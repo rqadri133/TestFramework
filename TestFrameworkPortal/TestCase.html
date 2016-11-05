@@ -1,0 +1,49 @@
+﻿<!---Infosys innovation Team-->
+
+<div ng-controller="TestCaseController as testctrl" class="row">
+    <form id="frmTestCase" ng-model="testCaseinformation" ng-submit="addTestCase(testCaseinformation)">
+        <div class="col col-md-offset-1">
+            <div class="widget widget-content">
+                <table class="table table-condensed">
+                    <tr>
+                        <td>
+                            <b>Enter Test Case Name</b> <br />
+                            <input required="required" title="CaseId" id="txtCaseID" ng-model="testCaseinformation.TestCaseDescName" type="text" />
+                        </td>
+                        <td>
+                            <b>Select Test Type</b> <br />
+                            <select ng-model="testCaseinformation.TestTypeID"  ng-options="item.TestTypeID as item.TestTypeName for item in testTypes"></select>
+                        </td>
+
+
+                        <td class="col col-md-offset-1">
+                            <b>Enter Test Case Maturity Date</b> <br />
+                            <md-datepicker ng-model="testCaseinformation.CreatedDate" md-placeholder="Enter date"></md-datepicker>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="right" class="col col-md-offset-1">
+                            <button id="btnCaseSave" class="btn btn-primary"> Save  </button>
+                            <button id="btnCancel" class="btn btn-danger"> Cancel </button>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td align="right" class="col col-md-offset-5">
+                            <label id="btnCaseSave" class="btn btn-success"> {{testCaseCreationMessage}}  </label>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+</div>

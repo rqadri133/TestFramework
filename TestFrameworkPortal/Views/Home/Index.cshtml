@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Home Page Test Framework Portal";
+}
+<div ng-controller="LoginController as log">
+  <div  class="tabsdemoDynamicHeight">
+        <md-content ng-show="parentObj.beforeLogin">
+            <md-tabs md-border-bottom="" md-dynamic-height="">
+                <md-tab label="About">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">How it works</h1>
+                        <p>
+                            A test framework portal will provide a test developer or a developer to track data nodes by creating test cases , each test case could be customized to take injected test script for any current service inorder to test the currently
+                            running services. The developer can attach already design test script or generate a new test script by just injecting a new conditional expression and it will generate the code in C# to test the desired complex logic.
+                        </p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Demo">
+                    <md-content class="md-padding">
+                        <ng-include src="'demorequest.html'"></ng-include>
+                    </md-content>
+                </md-tab>
+                
+                <md-tab label="Login">
+                    <md-content class="md-padding">
+                        <ng-include src="'login.html'"></ng-include>
+          
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+
+
+        <md-content ng-show="parentObj.afterLogin">
+            <md-tabs md-border-bottom="" md-dynamic-height="">
+            
+
+                <md-tab  label="System Admin">
+                    <md-content class="md-padding">
+                        <label class="label label-info">Test Configurations Required </label> 
+                        <p>
+                           <ng-include src="'Users.html'"></ng-include>
+                        </p>
+                    </md-content>
+                </md-tab>
+
+                <md-tab label="Test Case">
+                    <md-content class="md-padding">
+                        <ng-include  src="'TestCase.html'"></ng-include>
+                    </md-content>
+    </md-tab>
+             <md-tab label="Test Connection">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <div class="col col-md-offset-1">
+
+                                <div class="widget widget-content">
+                                    <ng-include src="'TestConnections.html'"></ng-include>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+    <md-tab label="Test Script">
+        <md-content class="md-padding">
+            <div class="row">
+                <div class="col col-md-offset-1">
+
+                    <div class="widget widget-content">
+                        <!--check test -->
+          
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Test Expression">
+        <md-content class="md-padding">
+            <div  class="row">
+                <div class="col col-md-offset-1">
+
+                    <div   class="widget widget-content">
+                     
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </md-content>
+    </md-tab>
+                
+    </md-tabs>
+    </md-content>
+
+</div>
+
+
+    
+    
+
+
+    
+
+
+
+</div>
+
+  
+
