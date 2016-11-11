@@ -104,10 +104,12 @@ namespace TestFrameworkPortal.Controllers
         [ResponseType(typeof(TestConnectionType))]
         public IHttpActionResult PostTestConnectionType(TestConnectionType testConnectionType)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
 
             db.TestConnectionTypes.Add(testConnectionType);
 

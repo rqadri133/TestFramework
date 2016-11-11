@@ -1,8 +1,6 @@
 ﻿app.controller('TFController', function ($scope, $http, $rootScope, TestFramworkService) {
 
 
-
-
 });
 
 app.controller('LoginController', function ($scope, $http, $rootScope, TestFramworkService) {
@@ -53,6 +51,9 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
             UserName: $scope.txtUserID,
             Pwd: $scope.txtPwd
         };
+
+
+     
         var userinformation = TestFramworkService.loginInfo(userInfo);
        
         userinformation.then(function (d) {
@@ -60,12 +61,14 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
          
             $rootScope.UserID = d.data.UserID;
 
+               var token = {
+            AuthenticationToken: $rootScope.UserID
+        };
+
+
             if ($rootScope.UserID != "") {
 
-                 token = {
-                    AuthenticationToken: $rootScope.UserID
-                };
-
+        
 
                var testConnections = TestFramworkService.loadAllConnections(token);
 
@@ -88,18 +91,13 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
             $rootScope.parentObj.beforeLogin = false;
             $rootScope.parentObj.afterLogin = true;
             $rootScope.users = d.data.AllUsers;
-            $rootScope.UserID = d.data.UserID;
+       
 
+        
 
+        
 
-
-
-            var tokenObj = {
-                AuthenticationToken: $rootScope.UserID
-            };
-
-
-            var testcontypes = TestFramworkService.loadAllConnectionTypes(tokenObj);
+            var testcontypes = TestFramworkService.loadAllConnectionTypes(token);
 
              testcontypes.then(function (d) {
              $rootScope.testConnectionTypes = d.data;
@@ -113,7 +111,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
             });
 
-             var testtypes = TestFramworkService.getTestTypes(tokenObj);
+             var testtypes = TestFramworkService.getTestTypes(token);
 
              testtypes.then(function (d) {
                  $rootScope.testTypes = d.data;
@@ -215,20 +213,24 @@ app.controller('TestCaseController', function ($scope, $http, $rootScope, TestFr
     
     
 
-    $scope.testCaseinformation = {
-         TestCaseDescName: $scope.txtTestCaseName,
-         CreatedDate: $scope.testCycleDate,
-         CreatedBy: $rootScope.UserID,
-         TestTypeID: $scope.selectedTestType
-    }
-
+     $scope.txtTestCaseName ="";
+     $scope.testCycleDate = "";
+     $scope.selectedTestType = "";
 
      
     $scope.addTestCase = function (testCaseInformation) {
 
+    
+        $scope.testCaseObj = {
+            TestCaseDescName: $scope.selTestCaseDescName,
+            CreatedDate: $scope.selExecutionDate,
+            CreatedBy: $rootScope.UserID,
+            TestTypeID: $scope.selTestTypeID
+        }
+
+        
         /* test the screen only */
 
-        $scope.testCaseinformation.CreatedBy = $rootScope.UserID;
         var testcaseinformation = TestFramworkService.saveTestCaseInfo($scope.testCaseinformation);
 
         testcaseinformation.then(function (d) {

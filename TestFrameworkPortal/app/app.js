@@ -5,7 +5,7 @@
 var app;
 (function () {
 
-    app = angular.module("TFApp", ['ng', 'ngMaterial', 'ngMessages' ]).run(function ($rootScope) {
+    app = angular.module("TFApp", ['ng','ngResource','ngMaterial', 'ngMessages' ]).run(function ($rootScope) {
         $rootScope.IsLogin = false;
         $rootScope.parentObj = {};
         $rootScope.parentObj.afterLogin = false;
@@ -46,6 +46,12 @@ var app;
         };
 
         
+
+    });
+    app.config(function ($httpProvider,  $resourceProvider) {
+        $httpProvider.defaults.headers.common['Authorization'] = 'Token AIzaSyC-zA3jAtEGij5SZNYypmWNo4UvilDeiXQ'
+        $resourceProvider.defaults.stripTrailingSlashes = false;
+
 
     });
 

@@ -74,12 +74,11 @@ namespace TestFrameworkPortal.Controllers
         [ResponseType(typeof(TestCase))]
         public IHttpActionResult PostTestCase(TestCase testCase)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            
             testCase.TestCaseID = Guid.NewGuid();
+            var token   = db.Tokens.ToList().Find(p => p.TokenDesc == testCase.CreatedBy.ToString());
+            testCase.CreatedBy     = token.CreatedBy; 
+
             db.TestCases.Add(testCase);
             try
             {

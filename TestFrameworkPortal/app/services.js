@@ -1,5 +1,9 @@
 'use strict';
-
+// http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
+// results 
+app.factory('GoogleLocationAPI', function ($resource) {
+    return $resource('https://www.googleapis.com/geolocation/v1/geolocate/' )
+});
 
 
 
@@ -11,9 +15,6 @@ app.service("TestFramworkService", function ($http ,$rootScope)
     };
 
 
-
-
-
     this.addTestTypes = function (testTypeObj) {
         return $http(
           {
@@ -23,6 +24,21 @@ app.service("TestFramworkService", function ($http ,$rootScope)
 
           });
     };
+
+
+
+    this.getGeographicalPosition = function () {
+        return $http(
+          {
+              method: 'post',
+              data: { key: 'AIzaSyAnZoTPT_PiwrelxGfK2RXNNYtMGgoNflc' },
+              url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAnZoTPT_PiwrelxGfK2RXNNYtMGgoNflc'
+
+          });
+    };
+
+    //
+
 
 
 
