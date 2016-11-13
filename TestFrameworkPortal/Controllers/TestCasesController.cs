@@ -72,13 +72,13 @@ namespace TestFrameworkPortal.Controllers
 
         // POST: api/TestCases
         [ResponseType(typeof(TestCase))]
-        public IHttpActionResult PostTestCase(TestCase testCase)
+        public IHttpActionResult PostTestCase(proxyClasses.TestCaseProxy testproxy)
         {
-            
-            testCase.TestCaseID = Guid.NewGuid();
-            var token   = db.Tokens.ToList().Find(p => p.TokenDesc == testCase.CreatedBy.ToString());
-            testCase.CreatedBy     = token.CreatedBy; 
 
+             
+            var token   = db.Tokens.ToList().Find(p => p.TokenDesc == testproxy.CreatedBy.ToString());
+           
+            TestCase testCase = new TestCase() {  CreatedBy = token.CreatedBy , CreatedDate = DateTime.Now , TestCaseID = Guid.NewGuid() , TestCaseDescName = testproxy.TestCaseDescName , TestTypeID = testproxy.TestTypeID };
             db.TestCases.Add(testCase);
             try
             {

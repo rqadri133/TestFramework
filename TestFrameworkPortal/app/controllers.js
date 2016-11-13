@@ -218,10 +218,10 @@ app.controller('TestCaseController', function ($scope, $http, $rootScope, TestFr
      $scope.selectedTestType = "";
 
      
-    $scope.addTestCase = function (testCaseInformation) {
+    $scope.addTestCase = function () {
 
     
-        $scope.testCaseObj = {
+        var testproxy = {
             TestCaseDescName: $scope.selTestCaseDescName,
             CreatedDate: $scope.selExecutionDate,
             CreatedBy: $rootScope.UserID,
@@ -231,7 +231,7 @@ app.controller('TestCaseController', function ($scope, $http, $rootScope, TestFr
         
         /* test the screen only */
 
-        var testcaseinformation = TestFramworkService.saveTestCaseInfo($scope.testCaseinformation);
+        var testcaseinformation = TestFramworkService.saveTestCaseInfo(testproxy);
 
         testcaseinformation.then(function (d) {
 
