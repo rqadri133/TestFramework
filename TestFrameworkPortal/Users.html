@@ -35,14 +35,14 @@
                     <div class="row">
                         <div class="col col-md-offset-0">
                             <div class="widget widget-content">
-                                <form ng-submit="addTestType()" name="Test Type">
+                                <form ng-submit="addConnectionType()" name="Test Type">
                                     <div class="col col-md-offset-0">
                                         <div class="widget widget-content">
                                             <table class="table table-condensed">
                                                 <tr>
                                                     <td>
                                                         <b>Enter Test Connection Type </b> <br />
-                                                        <input required="required" ng-model="testConTypeInfo" type="text" name="testtype" />
+                                                        <input required="required" ng-model="testConTypeInfo" type="text" name="testcontype" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -54,7 +54,7 @@
                                                 </tr>
                                             </table>
                                             <div class="col-lg-offset-0">
-                                                <label ng-show="noDemoMessage" class="label label-success"> {{MsgSavedTestCon}}  </label>
+                                                <label ng-show="noDemoMessage" class="label label-success"> {{msgSavedTestCon}}  </label>
                                             </div>
                                         </div>
                                     </div>

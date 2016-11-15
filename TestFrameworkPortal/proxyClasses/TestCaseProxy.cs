@@ -21,4 +21,26 @@ namespace TestFrameworkPortal.proxyClasses
     }
 
 
+
+}
+
+
+namespace TestFrameworkPortal
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
+    [DataContract]
+
+    public class TestConnectionData
+    {
+        public Guid TestConnectionTypeID { get; set; }
+        [DataMember]
+        public string TestConnctionTypeName { get; set; }
+        [DataMember]
+        public System.DateTime CreatedDate { get; set; }
+        [DataMember]
+        public string CreatedBy { get; set; }
+    }
 }

@@ -6,11 +6,13 @@
 app.controller('LoginController', function ($scope, $http, $rootScope, TestFramworkService) {
   
   // its tokenization based so the service dependency injection applied
-    
+    $scope.testConTypeInfo = "";
+
     $scope.testTypeName = "";
     var token = {
         AuthenticationToken: $rootScope.UserID
     };
+   
    
 
     $scope.addTestType = function () {
@@ -33,6 +35,40 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
             testtypes.then(function (d) {
                 $rootScope.testTypes = d.data; 
+            }, function (error) {
+                console.log('Oops! Something went wrong while saving the data.');
+
+
+            });
+
+        });
+
+    }
+
+    $scope.addConnectionType = function () {
+
+        var testConnectionType = {
+            
+            TestConnctionTypeName: $scope.testConTypeInfo ,
+            CreatedBy : $rootScope.UserID  
+        };
+
+        var addConnType = TestFramworkService.addTestConnectionType(testConnectionType);
+
+
+        addConnType.then(function (d) {
+
+            $scope.typeSaved = "Test Connection Type Saved";
+
+            tokenObj = {
+                AuthenticationToken: $rootScope.UserID
+            };
+
+
+            var testcontypes = TestFramworkService.loadAllConnectionTypes(tokenObj);
+
+            testcontypes.then(function (d) {
+                $rootScope.testConnectionTypes = d.data;
             }, function (error) {
                 console.log('Oops! Something went wrong while saving the data.');
 
@@ -244,6 +280,31 @@ app.controller('TestCaseController', function ($scope, $http, $rootScope, TestFr
         });
     };
 
+    $scope.addTestCase = function () {
+
+    
+        var testproxy = {
+            TestCaseDescName: $scope.selTestCaseDescName,
+            CreatedDate: $scope.selExecutionDate,
+            CreatedBy: $rootScope.UserID,
+            TestTypeID: $scope.selTestTypeID
+        }
+
+        
+        /* test the screen only */
+
+        var testcaseinformation = TestFramworkService.saveTestCaseInfo(testproxy);
+
+        testcaseinformation.then(function (d) {
+
+            $rootScope.parentObj.beforeLogin = false;
+            $scope.testCaseCreationMessage = "Successfully Created Test Case , The Next Step to assign expression or multiple expressions to Test Case with a order sequence"
+            $rootScope.parentObj.afterLogin = true;
+
+        }, function (error) {
+            console.log('Oops! Something went wrong while saving the data.')
+        });
+    };
 
 
 

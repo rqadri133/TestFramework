@@ -32,6 +32,7 @@ namespace TestFrameworkPortal.Controllers
             Guid _authenticationToken ;
             User selectedTokenized = null;
             var _connectiontypes = new List<TestConnectionType>();
+
             Token _toFind = null;
 
             if(!String.IsNullOrEmpty(token.AuthenticationToken))
@@ -102,7 +103,7 @@ namespace TestFrameworkPortal.Controllers
 
         // POST: api/TestConnectionTypes
         [ResponseType(typeof(TestConnectionType))]
-        public IHttpActionResult PostTestConnectionType(TestConnectionType testConnectionType)
+        public IHttpActionResult PostTestConnectionType(TestConnectionData testConnectionType)
         {
 
             if (!ModelState.IsValid)
@@ -110,8 +111,10 @@ namespace TestFrameworkPortal.Controllers
                 return BadRequest(ModelState);
             }
 
+            var createdBy = db.Tokens.ToList().Find(p => p.TokenDesc == testConnectionType.CreatedBy);
 
-            db.TestConnectionTypes.Add(testConnectionType);
+
+            db.TestConnectionTypes.Add(new TestConnectionType() { TestConnectionTypeID = Guid.NewGuid(), CreatedBy = createdBy.CreatedBy, CreatedDate = System.DateTime.Now, TestConnctionTypeName = testConnectionType.TestConnctionTypeName  });
 
             try
             {

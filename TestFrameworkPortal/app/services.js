@@ -14,6 +14,20 @@ app.service("TestFramworkService", function ($http ,$rootScope)
 
     };
 
+    /* Adding Test Connection Type */
+
+    this.addTestConnectionType = function (connectionTypeObj) {
+        return $http(
+          {
+              method: 'post',
+              data: connectionTypeObj,
+              url: ' api/TestConnectionTypes'
+
+          });
+    };
+
+
+
 
     this.addTestTypes = function (testTypeObj) {
         return $http(
