@@ -1,6 +1,65 @@
 ﻿<!---Infosys innovation Team-->
 <div ng-controller="TestExpressionController as testEctrl" class="row">
+   
+    <div ng-show="showStepOne">
+        <div class="row">
+            <div class="col col-lg-offset-0">
+                <label class="label label-info">
+                    Generate Script for the Test Type
+                </label>
+                <select ng-model="selTestTypeID" ng-options="item.TestTypeID as item.TestTypeName for item in testTypes"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-offset-0">
+                <label class="label label-info">
+                    For the Connection Type
+                </label>
+                <select ng-model="selTestConnectionTypeID" ng-options="item.TestConnetionTypeID as item.TestConnectionTypeName for item in testConnectionTypes"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-offset-5">
+                <button id="btnSubmitStepOne" class="btn btn-dcyan"> Next </button>
+            </div>
+        </div>
+    </div>
+  
+
+    <div ng-show="showStepTwo">
+        <div  class="row">
+            <div class="col col-lg-offset-0">
+                   Select the Table :
+                <select ng-model="selTestTableID" ng-options="item.TestTableID as item.TestTableName for item in testTables"></select>
+            </div>
+            <div class="col col-lg-offset-1">
+                    For the Column :
+                <select ng-model="selTestColumnID" ng-options="item.TestColumnID as item.TestColumnName for item in testColumns"></select>
+            </div>
+        </div>
+        <div class="col col-lg-offset-1">
+            <label class="label label-info">
+                Compare with this Value :
+            </label>
+            <input type="text" ng-model="checkthisValue"/>
+            <button id="btnAddComplex" class="btn btn-green"> Next </button>
+        </div>
+        <div ng-show="showComplexExpression"  class="col col-lg-offset-2">
+               Complex Expression / Where Condition :
+            <input type="text" max="1000" ng-model="complexExression" value="tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName OR|AND|==|Equal tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName"   />
+        </div>
+    </div>
+
+
+     <div class="row">
+            <div class="col col-lg-offset-5">
+                <button id="btnSubmitStepTwo" class="btn btn-dcyan"> Generate Script </button>
+            </div>
+        </div>
+    </div>
     
-    
+
+
+
 
 </div>
