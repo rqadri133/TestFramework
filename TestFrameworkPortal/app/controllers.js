@@ -362,79 +362,17 @@ app.controller('TestConnectionController', function ($scope, $http, $rootScope, 
 app.controller('TestExpressionController', function ($scope, $http, $rootScope, TestFramworkService) {
     /* test the screen only */
 
-    $scope.showExpressionEdits = false;
-    $scope.showColumnSelections = true;
+    $scope.selTestTypeID = "";
+    $scope.selConnectionID = "";
+    $scope.allTables = [];
+       
 
-    $scope.testConnectionsDefined = null;
-    $scope.testTableSources = null;
-    $scope.testColumnsSources = null;
-    $scope.testOperands = null;
-    $scope.testColumnsTarget = null;
-    $scope.testExpressionMessage = null;
-    $scope.showSuccessCon = false;
-    $scope.showFailedCon = false;
-    $scope.expressionObj = {
-        TestConnectionID: "",
-        TestConnectionDestID: "",
-        TestTableID: "",
-        TestTableTargetID: "",
-        SourceColumnID: "",
-        OperandIDApplied: "",
-        TargetColumnID: "",
-        Expression : ""
-
-
-
-    }
-
-
-
-   
-    var token = {
-        AuthenticationToken: $rootScope.UserID
-    }
-
-    if ($rootScope.UserID !=  "")
-    {
-
-
-        var testConnections = TestFramworkService.loadAllConnections(token);
-
-        testConnections.then(function (d) {
-            $scope.testConnectionsDefined = d.data;
-            $scope.expressionObj.TestConnectionSourceID = d.data[0].TestConnectionID;
-
-        }, function (error) {
-            console.log('Oops! Something went wrong while saving the data.');
-        });
-
-
-    }
-
-    // here i don't need case info 
-    $scope.areaVal = ""
-
-    $scope.backToExpressionColumnRule = function () {
-
-        $scope.showExpressionEdits = false;
-        $scope.showColumnSelections = true;
+    $scope.nextStep = function () {
+        var selectedConnectionID = $scope.selConnectionID;
+                 
 
 
     };
-
-    $scope.showEditor = function() 
-    {
-
-        $scope.showExpressionEdits = true;
-        $scope.showColumnSelections = false ;
-
-
-
-    };
-
-
-
-
 
 
 

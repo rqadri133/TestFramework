@@ -14,6 +14,15 @@ app.service("TestFramworkService", function ($http ,$rootScope)
 
     };
 
+    this.loadAllTablesFromDB = function (connectionParam) {
+        return $http(
+          {
+              method: 'post',
+              data: connectionParam ,
+              url: ' api/loadAllTables'
+
+          });
+    };
     /* Adding Test Connection Type */
 
     this.addTestConnectionType = function (connectionTypeObj) {

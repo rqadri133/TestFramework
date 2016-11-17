@@ -33,6 +33,7 @@ namespace TestFrameworkPortal.Controllers
             if (testConnection == null)
             {
                 return NotFound();
+
             }
 
             return Ok(testConnection);
@@ -138,10 +139,7 @@ namespace TestFrameworkPortal.Controllers
             testConnection.TestConnectionID = Guid.NewGuid();
             testConnection.CreatedDate = System.DateTime.Now;
           
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+         
 
             db.TestConnections.Add(testConnection);
 

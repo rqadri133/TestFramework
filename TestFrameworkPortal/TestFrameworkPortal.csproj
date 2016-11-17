@@ -405,6 +405,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers.js" />
+    <Content Include="app\filters.js" />
     <Content Include="app\services.js" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
