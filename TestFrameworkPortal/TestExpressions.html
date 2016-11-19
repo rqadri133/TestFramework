@@ -15,11 +15,10 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div ng-repeat="count in counterConditions" ng-show="showStepTwo">
+    <div ng-show="showStepTwo" class="row">
+        <div ng-repeat="count in counterConditions">
                        
-
-
+              
                 <div class="col col-lg-offset-0">
                      Select the Table :
                     <select ng-model="selTestTableID" ng-options="item.TestTableID as item.TestTableName for item in testTables"></select>
@@ -32,14 +31,14 @@
 
                 <div class="col col-lg-offset-1">
                     <label class="label label-info">
-                       Compare with this Value :
+                       Compare with this Value  :
                     </label>
                     <input type="text" ng-model="checkthisValue" />
 
                 </div>
             </div>
-             AND OR CONDITION MAY BE : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
-            <button id="btnAddLogicalCondition" class="btn btn-green"> Add </button>
+             FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
+            <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add </button>
                
     </div>
     <div class="row">

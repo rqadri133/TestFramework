@@ -365,16 +365,27 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.selTestTypeID = "";
     $scope.selConnectionID = "";
     $scope.allTables = [];
-    $scope.counterConditions = [];
+    $scope.counterConditions = [
+       { counter: 1, ConditionRepeat: '' }];
+
+
     $scope.testTables =  [
-       { TestTableID: '2131313', TestTableName: 'Select Table Name' }
+       { TestTableID: '21313UREUREERERRER13', TestTableName: 'Select Table Name' }
     ];
     
     $scope.selTestTableID = null;
     $scope.selTestColumnID = null;
     $scope.checkthisValue = "";
-    $scope.testOperands = [];
     
+    $scope.testOperands = [
+       { Operand: '>', Operation: 'Greater Then' },
+       { Operand: '<', Operation: 'Less Then' },
+       { Operand: '==', Operation: 'Equal' },
+       { Operand: '<=', Operation: 'Less Then Equal' },
+       { Operand: '>=', Operation: 'Greater Then Equal' }
+    ];
+
+
     $scope.testLogicals = [
        { lexicalToken: 'AND' , Operation: 'AND CONDITION' },
        { lexicalToken: 'OR' ,  Operation: 'OR CONDITION'  },
@@ -386,11 +397,32 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     
     $scope.selTestAndOrID = "";
     $scope.complexExression = "";
+    $scope.showStepOne = true;
+    $scope.showStepTwo = false;
 
+    $scope.showComplexExpression = false;
+
+    var countCondition = 0;
+
+
+    $scope.addCondition = function () {
+
+        countCondition = countCondition + 1;
+        $scope.counterConditions.push({
+            counter: countCondition, ConditionRepeat: $scope.selTestAndOrID
+        });
+
+    };
 
     $scope.nextStep = function () {
         var selectedConnectionID = $scope.selConnectionID;
         var testtables = TestFramworkService.loadAllTablesFromDB(token);
+        $scope.showStepOne = false
+        $scope.showStepTwo = true
+
+        $scope.showComplexExpression = false;
+
+        
 
         testtables.then(function (d) {
             $rootScope.testTables = d.data;

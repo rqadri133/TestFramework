@@ -32,8 +32,8 @@ namespace TestFrameworkPortal.proxyClasses
             finally
             {
 
-            }  
-
+            }
+            return new List<TestTable>();
         }
     }
 

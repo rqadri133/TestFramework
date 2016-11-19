@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\rqadri\Development\TMSRobert-master (1)\TMSRobert-master\TestFrameworkPortal\TMS.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\rqadri\Development\TMSRobert-AppDev\TMSRobert-AppDev\TestFrameworkPortal\TMS.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

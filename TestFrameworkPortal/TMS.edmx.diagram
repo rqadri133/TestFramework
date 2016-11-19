@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="TMSModel.TestConnectionType" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestCycle" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestCycle1" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestDataModelFunction" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMSModel.TestDataModelFunction" Width="2.125" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestDataModelFunction1" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestDataNodeAnaylysi" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestDataNodeTriggeredEvent" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
