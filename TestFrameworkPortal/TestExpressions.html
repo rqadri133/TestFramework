@@ -3,14 +3,14 @@
    <div ng-show="showStepOne">
         <div class="row">
             <div class="col col-lg-offset-0">
-                <label class="label label-info">
+                <label>
                     For the Connection Type
                 </label>
-                <select ng-model="selTestConnectionID" ng-options="item.TestConnetionID as item.TestConnectionName for item in testConnectionTypes"></select>
+                <select ng-model="selTestConnectionID" ng-options="item.TestConnetionID as item.TestConnectionName for item in testConnectionsAll"></select>
             </div>
         </div>
         <div class="row">
-            <div class="col col-lg-offset-5">
+            <div class="col col-lg-offset-2">
                 <button id="btnSubmitStepOne" ng-click="nextStep()" class="btn btn-dcyan"> Next </button>
             </div>
         </div>
@@ -39,7 +39,7 @@
             </div>
              FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
             <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add </button>
-               
+          <button id="btnSubmitStepTwo" class="btn btn-dcyan"> Generate Script </button>     
     </div>
     <div class="row">
         <div ng-show="showComplexExpression" class="col col-lg-offset-2">
@@ -48,11 +48,7 @@
         </div>
     </div>
     
-    <div class="row">
-        <div class="col col-lg-offset-5">
-            <button id="btnSubmitStepTwo" class="btn btn-dcyan"> Generate Script </button>
-        </div>
-    </div>
+  
     
     
 
