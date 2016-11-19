@@ -82,6 +82,8 @@ namespace TestFrameworkPortal.Controllers
                 // User exist in session  
                 if (selectedTokenized != null)
                 {
+
+
                          // token.ConnectionStr 
                       //   _connections = db.TestConnections.ToList<TestConnection>();
                       // Call connection service to load all tables 

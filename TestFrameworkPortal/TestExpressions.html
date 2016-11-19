@@ -17,7 +17,9 @@
     </div>
     <div class="row">
         <div ng-repeat="count in counterConditions" ng-show="showStepTwo">
-       
+                       
+
+
                 <div class="col col-lg-offset-0">
                      Select the Table :
                     <select ng-model="selTestTableID" ng-options="item.TestTableID as item.TestTableName for item in testTables"></select>
@@ -36,7 +38,7 @@
 
                 </div>
             </div>
-             AND OR CONDITION MAY BE : <select ng-model="selTestAndOrID" ng-options="item.TestLogicalID as item.TestLogicalName for item in testLogicals"></select>
+             AND OR CONDITION MAY BE : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
             <button id="btnAddLogicalCondition" class="btn btn-green"> Add </button>
                
     </div>

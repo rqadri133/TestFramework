@@ -27,6 +27,12 @@ namespace TestFrameworkPortal.proxyClasses
             set;
         }
 
+        [DataMember]
+        public Guid ConnectionID
+        {
+            get;
+            set;
+        }
 
 
 

@@ -365,11 +365,42 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.selTestTypeID = "";
     $scope.selConnectionID = "";
     $scope.allTables = [];
-       
+    $scope.counterConditions = [];
+    $scope.testTables =  [
+       { TestTableID: '2131313', TestTableName: 'Select Table Name' }
+    ];
+    
+    $scope.selTestTableID = null;
+    $scope.selTestColumnID = null;
+    $scope.checkthisValue = "";
+    $scope.testOperands = [];
+    
+    $scope.testLogicals = [
+       { lexicalToken: 'AND' , Operation: 'AND CONDITION' },
+       { lexicalToken: 'OR' ,  Operation: 'OR CONDITION'  },
+       { lexicalToken: '||'  , Operation: 'OR CONDITION'  },
+       { lexicalToken: '&&',   Operation: 'AND OPERATION' },
+       { lexicalToken: '==' ,  Operation: 'AND OPERATION' }
+    ];
+
+    
+    $scope.selTestAndOrID = "";
+    $scope.complexExression = "";
+
 
     $scope.nextStep = function () {
         var selectedConnectionID = $scope.selConnectionID;
-                 
+        var testtables = TestFramworkService.loadAllTablesFromDB(token);
+
+        testtables.then(function (d) {
+            $rootScope.testTables = d.data;
+            $rootScope.selTestTableID = d.data[0].TestTableID;
+
+        }, function (error) {
+            console.log('Oops! Something went wrong while saving the data.');
+
+
+        });
 
 
     };

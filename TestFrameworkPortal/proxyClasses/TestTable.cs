@@ -6,6 +6,31 @@ using System.Runtime.Serialization;
 namespace TestFrameworkPortal.proxyClasses
 {
 
+    [DataContract]
+    public class TestDependencies
+    {
+
+        [DataMember]
+        public List<TestTable> TestTables
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public List<TestOperand> TestOperands
+        {
+            get;
+            set;
+        }
+   
+    }
+
+    
+
+
+
+
 
     [DataContract]
     public class TestTable
@@ -27,13 +52,7 @@ namespace TestFrameworkPortal.proxyClasses
         }  
 
 
-        [DataMember]
-        public List<TestColumn> TestColumns
-        {
-            get;
-            set;
-
-        }
+       
 
 
 
