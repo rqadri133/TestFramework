@@ -24,7 +24,7 @@ namespace TestFrameworkPortal.proxyClasses
         {
             SqlConnection connection = new SqlConnection(connection_string);
             DataSet ds = new DataSet();
-            SqlCommand command = new SqlCommand("SELECT * FROM  INFORMATION_SCHEMA.Tables", connection);
+            SqlCommand command = null;
             command.CommandTimeout = 120;
           //  command.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter(command);
