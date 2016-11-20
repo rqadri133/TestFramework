@@ -39,7 +39,52 @@ namespace TestFrameworkPortal.Controllers
             return Ok(testConnection);
         }
 
-        
+        [Route("testdependencies/LoadAll")]
+        [ResponseType(typeof(TestDependencies))]
+        public IHttpActionResult GetTestDependencies(proxyClasses.Token token)
+        {
+            TestDependencies dependencies = new TestDependencies();
+            Guid _authenticationToken;
+            IConnection connector = null;
+
+           Guid testConnectionTypeID =    db.TestConnections.ToList().Find(p => p.TestConnectionID == token.ConnectionID).TestConnectionTypeID;
+           var dbTypeName  = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
+
+            switch(dbTypeName)
+            {
+                case "SQL SERVER":
+                    connector = new SqlServer();
+                    break;
+                case "ORACLE SERVER":
+                    connector = new OracleServer();
+                    break;
+            }
+
+
+            Token selectedTokenized = null;
+            if (!String.IsNullOrEmpty(token.AuthenticationToken))
+            {
+                // look for valid token 
+                // never send IDs
+                selectedTokenized = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
+
+                // User exist in session  
+
+                if (selectedTokenized != null)
+                {
+                    dependencies.TestTables = connector.GetAllTables(token.ConnectionStr);
+
+                }
+
+            }
+
+
+
+
+            return Ok(dependencies);
+        }
+
+
 
         [Route("testconnections/LoadAll")]
         [HttpPost]
