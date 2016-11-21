@@ -35,7 +35,7 @@ namespace TestFrameworkPortal.proxyClasses
                 command.CommandTimeout = 120;
                 //  command.ExecuteNonQuery();
                 da = new SqlDataAdapter(command);
-               da.Fill(ds);
+                da.Fill(ds);
 
             }
             catch (Exception excp)

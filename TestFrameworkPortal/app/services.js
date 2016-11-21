@@ -5,24 +5,22 @@ app.factory('GoogleLocationAPI', function ($resource) {
     return $resource('https://www.googleapis.com/geolocation/v1/geolocate/' )
 });
 
-
-
 app.service("TestFramworkService", function ($http ,$rootScope)  
   {  
     this.getTestCycles = function () {
         return $http.get("api/TestCycles")
 
     };
-
-    this.loadAllTablesFromDB = function (connectionParam) {
+    
+    this.loadAllTablesFromDB = function (token) {
         return $http(
           {
               method: 'post',
-              data: connectionParam ,
-              url: ' api/loadAllTables'
-
+              data: token ,
+              url: 'testdependencies/LoadAll'
           });
     };
+
     /* Adding Test Connection Type */
 
     this.addTestConnectionType = function (connectionTypeObj) {

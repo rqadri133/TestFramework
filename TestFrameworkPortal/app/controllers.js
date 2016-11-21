@@ -414,15 +414,21 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     };
 
-    $scope.nextStep = function () {
+       $scope.nextStep = function () {
         var selectedConnectionID = $scope.selConnectionID;
+        var token = {
+            AuthenticationToken: $rootScope.UserID,
+            ConnectionID: selectedConnectionID
+        };
+
+
         var testtables = TestFramworkService.loadAllTablesFromDB(token);
+
         $scope.showStepOne = false
         $scope.showStepTwo = true
 
         $scope.showComplexExpression = false;
-
-        
+                
 
         testtables.then(function (d) {
             $rootScope.testTables = d.data;

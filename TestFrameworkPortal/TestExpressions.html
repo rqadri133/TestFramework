@@ -17,19 +17,19 @@
     </div>
     <div ng-show="showStepTwo" class="row">
         <div ng-repeat="count in counterConditions">
-                       
-              
+                           
                 <div class="col col-lg-offset-0">
                      Select the Table :
                     <select ng-model="selTestTableID" ng-options="item.TestTableID as item.TestTableName for item in testTables"></select>
                 </div>
-                <div class="col col-lg-offset-1">
+                <div class="col col-lg-offset-0">
                      For the Column :
                     <select ng-model="selTestColumnID" ng-options="item.TestColumnID as item.TestColumnName for item in testColumns"></select>
                      Where It should be : <select ng-model="selTestOperandID" ng-options="item.TestOperandID as item.TestOperandName for item in testOperands"></select>
                 </div>
-
-                <div class="col col-lg-offset-1">
+                <br />
+                <br />
+                <div class="col col-lg-offset-0">
                     <label class="label label-info">
                        Compare with this Value  :
                     </label>
@@ -37,6 +37,9 @@
 
                 </div>
             </div>
+             <br />
+             <br />
+
              FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
             <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add </button>
           <button id="btnSubmitStepTwo" class="btn btn-dcyan"> Generate Script </button>     

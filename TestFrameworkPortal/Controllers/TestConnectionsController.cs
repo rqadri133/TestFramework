@@ -41,13 +41,18 @@ namespace TestFrameworkPortal.Controllers
 
         [Route("testdependencies/LoadAll")]
         [ResponseType(typeof(TestDependencies))]
+        [HttpPost]
         public IHttpActionResult GetTestDependencies(proxyClasses.Token token)
         {
             TestDependencies dependencies = new TestDependencies();
             Guid _authenticationToken;
             IConnection connector = null;
 
-           Guid testConnectionTypeID =    db.TestConnections.ToList().Find(p => p.TestConnectionID == token.ConnectionID).TestConnectionTypeID;
+            var testConnection = db.TestConnections.ToList().Find(p => p.TestConnectionID == token.ConnectionID);
+           
+            Guid testConnectionTypeID = testConnection.TestConnectionTypeID;
+            string testConnectionString = testConnection.TestConnectionString;
+
            var dbTypeName  = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
 
             switch(dbTypeName)
@@ -72,19 +77,14 @@ namespace TestFrameworkPortal.Controllers
 
                 if (selectedTokenized != null)
                 {
-                    dependencies.TestTables = connector.GetAllTables(token.ConnectionStr);
+                    dependencies.TestTables = connector.GetAllTables(testConnectionString);
 
                 }
 
             }
-
-
-
-
+            
             return Ok(dependencies);
         }
-
-
 
         [Route("testconnections/LoadAll")]
         [HttpPost]
