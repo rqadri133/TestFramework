@@ -71,7 +71,7 @@ namespace TestFrameworkPortal.proxyClasses
             List<TestColumn> columns = new List<TestColumn>();
 
 
-            string _filterExpression = " TABLE_NAME == " + table_name;
+            string _filterExpression = " TABLE_NAME = " + "'" + table_name + "'";
             
             try
             {
