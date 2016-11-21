@@ -414,6 +414,14 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     };
 
+    $scope.addDataSource = function () {
+
+        $scope.showStepOne = true;
+        $scope.showStepTwo = false;
+        $scope.testTables = [];
+        $scope.testColumns = [];
+    };
+
     $scope.nextStep = function () {
 
         var selectedConnectionID = $scope.selTestConnectionID;

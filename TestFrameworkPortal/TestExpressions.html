@@ -21,6 +21,7 @@
                 <div class="col col-lg-offset-0">
                      Select the Table :
                     <select ng-model="selTestTableID"  ng-change="loadColumns(selTestTableID)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
+                    <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-green"> Update Data Source </button>
                 </div>
                 <div class="col col-lg-offset-0">
                      For the Column :
