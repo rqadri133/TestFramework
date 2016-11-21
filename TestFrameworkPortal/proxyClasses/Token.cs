@@ -17,8 +17,7 @@ namespace TestFrameworkPortal.proxyClasses
 
 
         }
-
-
+        
 
         [DataMember]
         public string ConnectionStr
@@ -27,13 +26,21 @@ namespace TestFrameworkPortal.proxyClasses
             set;
         }
 
+
         [DataMember]
-        public Guid ConnectionID
+        public string ConnectionID
         {
             get;
             set;
         }
 
+
+        [DataMember]
+        public string TableName
+        {
+            get;
+            set;
+        }
 
 
     }

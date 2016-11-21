@@ -21,6 +21,19 @@ app.service("TestFramworkService", function ($http ,$rootScope)
           });
     };
 
+
+
+    this.loadAllColumnsFromTbl = function (token) {
+        return $http(
+          {
+              method: 'post',
+              data: token,
+              url: 'testcolumns/LoadAll'
+          });
+    };
+
+
+
     /* Adding Test Connection Type */
 
     this.addTestConnectionType = function (connectionTypeObj) {

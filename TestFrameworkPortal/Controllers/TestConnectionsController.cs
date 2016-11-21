@@ -47,13 +47,14 @@ namespace TestFrameworkPortal.Controllers
             TestDependencies dependencies = new TestDependencies();
             Guid _authenticationToken;
             IConnection connector = null;
-
-            var testConnection = db.TestConnections.ToList().Find(p => p.TestConnectionID == token.ConnectionID);
+            Guid connectionId = Guid.Parse(token.ConnectionID);
+            var testConnection = db.TestConnections.ToList().Find(p => p.TestConnectionID == connectionId);
            
             Guid testConnectionTypeID = testConnection.TestConnectionTypeID;
             string testConnectionString = testConnection.TestConnectionString;
 
-           var dbTypeName  = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
+            var dbTypeName  = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
+
 
             switch(dbTypeName)
             {
@@ -78,6 +79,11 @@ namespace TestFrameworkPortal.Controllers
                 if (selectedTokenized != null)
                 {
                     dependencies.TestTables = connector.GetAllTables(testConnectionString);
+                    if(dependencies.TestTables.Count == 1)
+                    {
+                        dependencies.TestTables.Add(new TestTable() { TestTableID = Guid.NewGuid(), TestTableName = "SELECT TABLE" });
+
+                    }
 
                 }
 
@@ -85,6 +91,63 @@ namespace TestFrameworkPortal.Controllers
             
             return Ok(dependencies);
         }
+
+        #region "load columns only by the provided authorization token and Table Name"
+
+        [Route("testcolumns/LoadAll")]
+        [ResponseType(typeof(TestDependencies))]
+        [HttpPost]
+        public IHttpActionResult GetTestColumns(proxyClasses.Token token)
+        {
+
+            TestDependencies dependencies = new TestDependencies();
+            Guid _authenticationToken;
+            IConnection connector = null;
+            Guid connectionId = Guid.Parse(token.ConnectionID);
+            var testConnection = db.TestConnections.ToList().Find(p => p.TestConnectionID == connectionId);
+
+            Guid testConnectionTypeID = testConnection.TestConnectionTypeID;
+            string testConnectionString = testConnection.TestConnectionString;
+
+            var dbTypeName = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
+
+
+            switch (dbTypeName)
+            {
+                case "SQL SERVER":
+                    connector = new SqlServer();
+                    break;
+                case "ORACLE SERVER":
+                    connector = new OracleServer();
+                    break;
+            }
+
+
+            Token selectedTokenized = null;
+            if (!String.IsNullOrEmpty(token.AuthenticationToken))
+            {
+                // look for valid token 
+                // never send IDs
+                selectedTokenized = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
+
+                // User exist in session  
+
+                if (selectedTokenized != null)
+                {
+                    dependencies.TestColumns = connector.GetAllColumns(testConnectionString, token.TableName );
+
+                }
+
+            }
+
+            return Ok(dependencies);
+        }
+
+
+        #endregion 
+
+
+
 
         [Route("testconnections/LoadAll")]
         [HttpPost]

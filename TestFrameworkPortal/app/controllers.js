@@ -363,7 +363,7 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     /* test the screen only */
 
     $scope.selTestTypeID = "";
-    $scope.selConnectionID = "";
+    $scope.selTestConnectionID = "";
     $scope.allTables = [];
     $scope.counterConditions = [
        { counter: 1, ConditionRepeat: '' }];
@@ -414,13 +414,15 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     };
 
-       $scope.nextStep = function () {
-        var selectedConnectionID = $scope.selConnectionID;
+    $scope.nextStep = function () {
+
+        var selectedConnectionID = $scope.selTestConnectionID;
+
         var token = {
             AuthenticationToken: $rootScope.UserID,
-            ConnectionID: selectedConnectionID
+            ConnectionStr: $scope.selTestConnectionID,
+            ConnectionID: $scope.selTestConnectionID
         };
-
 
         var testtables = TestFramworkService.loadAllTablesFromDB(token);
 
@@ -428,22 +430,44 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
         $scope.showStepTwo = true
 
         $scope.showComplexExpression = false;
-                
+          
 
         testtables.then(function (d) {
-            $rootScope.testTables = d.data;
-            $rootScope.selTestTableID = d.data[0].TestTableID;
+
+            $scope.testTables = d.data.TestTables;
+            $rootScope.selTestTableID = d.dataTestTables[0].TestTableName;
 
         }, function (error) {
             console.log('Oops! Something went wrong while saving the data.');
-
-
+            
         });
 
 
     };
 
+    $scope.loadColumns = function (selectedTableName) {
 
+        var token = {
+            AuthenticationToken: $rootScope.UserID,
+            ConnectionStr: $scope.selTestConnectionID,
+            ConnectionID: $scope.selTestConnectionID,
+            TableName: selectedTableName
+            
+        };
+
+        var testtableColumns = TestFramworkService.loadAllColumnsFromTbl(token);
+
+        testtableColumns.then(function (d) {
+
+            $scope.testColumns = d.data.TestColumns;
+
+        }, function (error) {
+            console.log('Oops! Something went wrong while saving the data.');
+
+        });
+
+
+    };
 
 });
 

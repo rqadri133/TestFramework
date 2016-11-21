@@ -11,8 +11,8 @@ namespace TestFrameworkPortal.proxyClasses
 {
     interface IConnection
     {
-
         List<TestTable> GetAllTables(string connection_string);
+        List<TestColumn> GetAllColumns(string connection_string, string table_name);
     }
 
 
@@ -25,7 +25,6 @@ namespace TestFrameworkPortal.proxyClasses
             SqlConnection connection = new SqlConnection(connection_string);
             DataSet ds = new DataSet();
             SqlCommand command = null;
-            command.CommandTimeout = 120;
           //  command.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter(command);
             try
@@ -61,6 +60,53 @@ namespace TestFrameworkPortal.proxyClasses
 
             return testTables;
         }
+
+        public List<TestColumn> GetAllColumns(string connection_string, string table_name)
+        {
+            SqlConnection connection = new SqlConnection(connection_string);
+            DataSet ds = new DataSet();
+            SqlCommand command = null;
+            //  command.ExecuteNonQuery();
+            SqlDataAdapter da = null;
+            List<TestColumn> columns = new List<TestColumn>();
+
+
+            string _filterExpression = " TABLE_NAME == " + table_name;
+            
+            try
+            {
+                connection.Open();
+                command = new SqlCommand("SELECT * FROM  INFORMATION_SCHEMA.Columns", connection);
+                command.CommandTimeout = 120;
+                //  command.ExecuteNonQuery();
+                da = new SqlDataAdapter(command);
+                da.Fill(ds);
+
+            }
+            catch (Exception excp)
+            {
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow row in ds.Tables[0].Select(_filterExpression))
+                {
+                    columns.Add(new TestColumn { TestColumnID = Guid.NewGuid(), TestColumnName = row["COLUMN_NAME"].ToString() });
+
+                }
+
+
+            }
+
+            return columns;
+        }
+
     }
 
 
@@ -72,6 +118,15 @@ namespace TestFrameworkPortal.proxyClasses
 
             // implementation required
             return new List<TestTable>();
+
+        }
+
+
+        public List<TestColumn> GetAllColumns(string connection_string, string table_name)
+        {
+
+            // implementation required
+            return new List<TestColumn>();
 
         }
     }

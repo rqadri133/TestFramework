@@ -23,7 +23,15 @@ namespace TestFrameworkPortal.proxyClasses
             get;
             set;
         }
-   
+
+        
+        [DataMember]
+        public List<TestColumn> TestColumns
+        {
+            get;
+            set;
+        }
+
     }
 
     
