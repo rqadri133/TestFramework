@@ -1,6 +1,6 @@
 ﻿<!---Infosys innovation Team-->
 <div ng-controller="TestExpressionController as testEctrl" class="row">
-   <div ng-show="showStepOne">
+    <div ng-show="showStepOne">
         <div class="row">
             <div class="col col-lg-offset-0">
                 <label>
@@ -10,46 +10,51 @@
             </div>
         </div>
         <div class="row">
-            <div class="col col-lg-offset-2">
+            <div class="col col-lg-offset-3">
                 <button id="btnSubmitStepOne" ng-click="nextStep()" class="btn btn-dcyan"> Next </button>
             </div>
         </div>
     </div>
     <div ng-show="showStepTwo" class="row">
-        <div ng-repeat="count in counterConditions">
-                           
+        
+        <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-danger"> Update Data Source </button>
+            <div ng-repeat="count in counterConditions">
+
                 <div class="col col-lg-offset-0">
-                     Select the Table :
-                    <select ng-model="selTestTableID"  ng-change="loadColumns(selTestTableID)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
-                    <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-green"> Update Data Source </button>
+                    <input ng-model="count.chkRemoved" type="checkbox" value="Remove" title="Remove"/> 
+                    Select the Table :
+                    <select ng-model="selectedTableName" ng-change="loadColumns(selectedTableName)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
                 </div>
                 <div class="col col-lg-offset-0">
-                     For the Column :
-                    <select ng-model="selTestColumnID"    ng-options="item.TestColumnID as item.TestColumnName for item in testColumns"></select>
-                     Where It should be : <select ng-model="selTestOperandID" ng-options="item.Operand as item.Operand for item in testOperands"></select> <input type="text" value="Enter any Alpha Numeric Value" ng-model="checkthisValue" />
+                    For the Column :
+                    <select ng-model="count.selTestColumnID" ng-options="item.TestColumnID as item.TestColumnName for item in count.testColumns"></select>
+                    Where It should be : <select ng-model="count.selTestOperandID" ng-options="item.Operand as item.Operand for item in testOperands"></select> <input type="text" value="Enter any Alpha Numeric Value" ng-model="count.checkthisValue" />
 
                 </div>
                 <br />
                 <br />
-            
+
             </div>
-             <br />
-           
 
-             FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
-            <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add </button>
-          <button id="btnSubmitStepTwo" class="btn btn-dcyan"> Generate Script </button>     
+            <br />
+
+            FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="count.selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
+            <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add Another Condition </button>
+            <button id="btnSubmitStepTwo" ng-click="generateScript(counterConditions)" class="btn btn-dcyan"> Generate Script </button>
+     
     </div>
+
+
     <div class="row">
         <div ng-show="showComplexExpression" class="col col-lg-offset-2">
             Generated Expression
             <input type="text" max="1000" ng-model="complexExression" value="tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName OR|AND|==|Equal tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName" />
         </div>
     </div>
-    
-  
-    
-    
+
+
+
+
 
 
 

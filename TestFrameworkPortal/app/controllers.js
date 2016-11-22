@@ -365,8 +365,9 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.selTestTypeID = "";
     $scope.selTestConnectionID = "";
     $scope.allTables = [];
+
     $scope.counterConditions = [
-       { counter: 1, ConditionRepeat: '' }];
+       { selTestTableID: '', counter: 1, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0 , testColumns :[]  }];
 
 
     $scope.testTables =  [
@@ -402,15 +403,22 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     $scope.showComplexExpression = false;
 
-    var countCondition = 0;
-
-
+    var countCondition = 1;
+    
     $scope.addCondition = function () {
-
         countCondition = countCondition + 1;
         $scope.counterConditions.push({
-            counter: countCondition, ConditionRepeat: $scope.selTestAndOrID
+            selTestTableID: '', counter: countCondition, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns : []
+
         });
+
+
+    };
+    
+    $scope.generateScript = function (counterConditions) {
+ 
+        var icounter = 0;
+        
 
     };
 
@@ -468,7 +476,7 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
         testtableColumns.then(function (d) {
 
             $scope.testColumns = d.data.TestColumns;
-
+   
         }, function (error) {
             console.log('Oops! Something went wrong while saving the data.');
 
