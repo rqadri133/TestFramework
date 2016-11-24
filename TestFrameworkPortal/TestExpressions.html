@@ -16,11 +16,14 @@
         </div>
     </div>
     <div ng-show="showStepTwo" class="row">
+        <button id="btnRemove"  ng-show="showRemove" class="btn btn-danger"> Remove Selected </button>
 
         <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-primary"> Update Data Source </button>
+        <br />
+        <br />
             <div ng-repeat="counterCondition in counterConditions">
                 <div class="col col-lg-offset-0">
-                    <input ng-model="checkthisValue"  type="checkbox" checked="" />
+                    <input ng-model="checkthisValue" ng-checked="callUpdate(checkthisValue ,counterCondition.counter)"  type="checkbox" checked="" />
                     Select the Table :
                     <select ng-model="selectedTableName" ng-change="loadColumns(selectedTableName,counterCondition.counter)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
                 </div>

@@ -389,6 +389,7 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
        { Operand: '>=', Operation: 'Greater Then Equal' }
     ];
 
+    $scope.selTestOperandID = $scope.testOperands[0].Operand;
 
     $scope.testLogicals = [
        { lexicalToken: 'AND' , Operation: 'AND CONDITION' },
@@ -399,7 +400,8 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     ];
 
     
-    $scope.selTestAndOrID = "";
+    $scope.selTestAndOrID = $scope.testLogicals[0].lexicalToken;
+
     $scope.complexExression = "";
     $scope.showStepOne = true;
     $scope.showStepTwo = false;
@@ -418,10 +420,26 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     };
     
+    $scope.showRemove = false;
 
+    $scope.callUpdate = function (chkRemoved, counter) {
 
-    $scope.updateRemoveList = function (chkRemoved, counter) {
-        $scope.counterConditions[counter] = chkRemoved;
+        $scope.counterConditions[counter].checkthisValue = chkRemoved;
+        var _in = false;
+
+        var index = 0;
+        var values = $scope.counterConditions;
+        for (var i = 0; i < values.length ; i++)
+        {
+            if (values[i].checkthisValue == true)
+            {
+                _in = true;
+            }
+ 
+        }
+          $scope.showRemove = _in ;
+
+           
        
     };
 
