@@ -12,8 +12,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     var token = {
         AuthenticationToken: $rootScope.UserID
     };
-   
-   
+      
 
     $scope.addTestType = function () {
         $scope.typeSaved = "";
@@ -365,19 +364,23 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.selTestTypeID = "";
     $scope.selTestConnectionID = "";
     $scope.allTables = [];
+    $scope.removeSelected = false;
 
+    var index = 0;
     $scope.counterConditions = [
-       { selTestTableID: '', counter: 1, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0 , testColumns :[]  }];
+       { selTestTableID: '', counter: index  , ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns: [{ TestColumnID :'34343434' , TestColumnName:'KUWEWE'  }]  }];
 
 
     $scope.testTables =  [
        { TestTableID: '21313UREUREERERRER13', TestTableName: 'Select Table Name' }
     ];
     
+
     $scope.selTestTableID = null;
     $scope.selTestColumnID = null;
     $scope.checkthisValue = "";
     
+
     $scope.testOperands = [
        { Operand: '>', Operation: 'Greater Then' },
        { Operand: '<', Operation: 'Less Then' },
@@ -403,18 +406,27 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     $scope.showComplexExpression = false;
 
-    var countCondition = 1;
     
     $scope.addCondition = function () {
-        countCondition = countCondition + 1;
+
+        index = index + 1;
         $scope.counterConditions.push({
-            selTestTableID: '', counter: countCondition, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns : []
+            selTestTableID: '', counter: index , ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE' }]
 
         });
 
 
     };
     
+
+
+    $scope.updateRemoveList = function (chkRemoved, counter) {
+        $scope.counterConditions[counter] = chkRemoved;
+       
+    };
+
+
+
     $scope.generateScript = function (counterConditions) {
  
         var icounter = 0;
@@ -446,7 +458,8 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
         $scope.showStepTwo = true
 
         $scope.showComplexExpression = false;
-          
+         
+
 
         testtables.then(function (d) {
 
@@ -461,9 +474,11 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     };
 
-    $scope.loadColumns = function (selectedTableName) {
+    $scope.loadColumns = function (selectedTableName, counter) {
+
 
         var token = {
+
             AuthenticationToken: $rootScope.UserID,
             ConnectionStr: $scope.selTestConnectionID,
             ConnectionID: $scope.selTestConnectionID,
@@ -474,8 +489,7 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
         var testtableColumns = TestFramworkService.loadAllColumnsFromTbl(token);
 
         testtableColumns.then(function (d) {
-
-            $scope.testColumns = d.data.TestColumns;
+            $scope.counterConditions[counter].testColumns = d.data.TestColumns;
    
         }, function (error) {
             console.log('Oops! Something went wrong while saving the data.');

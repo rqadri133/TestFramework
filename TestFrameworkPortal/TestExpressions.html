@@ -16,19 +16,20 @@
         </div>
     </div>
     <div ng-show="showStepTwo" class="row">
-        
-        <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-danger"> Update Data Source </button>
-            <div ng-repeat="count in counterConditions">
 
+        <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-primary"> Update Data Source </button>
+            <div ng-repeat="counterCondition in counterConditions">
                 <div class="col col-lg-offset-0">
-                    <input ng-model="count.chkRemoved" type="checkbox" value="Remove" title="Remove"/> 
+                    <input ng-model="checkthisValue"  type="checkbox" checked="" />
                     Select the Table :
-                    <select ng-model="selectedTableName" ng-change="loadColumns(selectedTableName)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
+                    <select ng-model="selectedTableName" ng-change="loadColumns(selectedTableName,counterCondition.counter)" ng-options="item.TestTableName as item.TestTableName for item in testTables"></select>
                 </div>
                 <div class="col col-lg-offset-0">
                     For the Column :
-                    <select ng-model="count.selTestColumnID" ng-options="item.TestColumnID as item.TestColumnName for item in count.testColumns"></select>
-                    Where It should be : <select ng-model="count.selTestOperandID" ng-options="item.Operand as item.Operand for item in testOperands"></select> <input type="text" value="Enter any Alpha Numeric Value" ng-model="count.checkthisValue" />
+                    <select  ng-model="selTestColumnID" ng-options="item.TestColumnName as item.TestColumnName for item in  counterCondition.testColumns"></select>
+                    Where It should be : <select ng-model="selTestOperandID"   ng-options="item.Operand as item.Operand for item in testOperands"></select><input type="text" ng-text-change="updateTestValue()"   value="Enter any Alpha Numeric Value" ng-model="checkthisValue" />
+                    <!---ng-change="updateColumn(selTestColumnID,counterCondition.counter)
+                    ng-change="updateOperand(counterCondition.counter,selTestOperandID)"-->
 
                 </div>
                 <br />
@@ -38,7 +39,7 @@
 
             <br />
 
-            FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="count.selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
+            FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
             <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add Another Condition </button>
             <button id="btnSubmitStepTwo" ng-click="generateScript(counterConditions)" class="btn btn-dcyan"> Generate Script </button>
      
