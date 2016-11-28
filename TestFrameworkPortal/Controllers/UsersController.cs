@@ -59,13 +59,22 @@ namespace TestFrameworkPortal.Controllers
             UserInfo usr = new UserInfo();
             // generated token and retruned 
             // Where to keep it 
-             usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString());
+         
 
             // Update Token DB keep this on separate DB is better
             // for a token generation injection Dodge the hacker to other fake screen keep him trying on that screen with empty server model\
             // send him back links like yahoo.com
             // google.com back n back again hacker will give up at some point 
-            Token tokenBase   =  db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
+            Token alreadyExist  = db.Tokens.ToList().Find(p => p.CreatedBy == user.UserID);
+            usr.UserID = alreadyExist.TokenDesc;
+
+            Token tokenBase = null;
+
+            if(alreadyExist == null)
+            {
+                usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString());
+                tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
+            }
 
             db.SaveChanges();
             usr.IsAdmin = false;
