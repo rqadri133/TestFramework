@@ -7,8 +7,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
   
   // its tokenization based so the service dependency injection applied
     $scope.testConTypeInfo = "";
-
-    $scope.testTypeName = "";
+        $scope.testTypeName = "";
     var token = {
         AuthenticationToken: $rootScope.UserID
     };
@@ -102,8 +101,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
 
             if ($rootScope.UserID != "") {
-
-        
+                      
 
                var testConnections = TestFramworkService.loadAllConnections(token);
 
@@ -329,11 +327,10 @@ app.controller('TestConnectionController', function ($scope, $http, $rootScope, 
         testcaseinformation.then(function (d) {
 
             $rootScope.parentObj.beforeLogin = false;
-            $scope.testCaseCreationMessage = "Successfully Created Test Case , The Next Step to assign expression or multiple expressions to Test Case with a order sequence"
+            $scope.testConnectionMessage = "Successfully Created Test connection , The Next Step to create a test script from defined connections"
             $rootScope.parentObj.afterLogin = true;
-
-            $scope.testConnectionMessage = "Successfully Created Test Connection , The Next Step to assign this connection to the Test expression ";
-
+           
+       
             $scope.showSuccessCon = true;
             $scope.showFailedCon = false;
 

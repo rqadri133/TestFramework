@@ -73,15 +73,24 @@ namespace TestFrameworkPortal.Controllers
                 // look for valid token 
                 // never send IDs
                 selectedTokenized = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
-
                 // User exist in session  
 
                 if (selectedTokenized != null)
                 {
-                    dependencies.TestTables = connector.GetAllTables(testConnectionString);
-                    if(dependencies.TestTables.Count == 1)
+
+                    try
                     {
-                        dependencies.TestTables.Add(new TestTable() { TestTableID = Guid.NewGuid(), TestTableName = "SELECT TABLE" });
+                        dependencies.TestTables = connector.GetAllTables(testConnectionString);
+                        if (dependencies.TestTables.Count == 1)
+                        {
+                            dependencies.TestTables.Add(new TestTable() { TestTableID = Guid.NewGuid(), TestTableName = "SELECT TABLE" });
+
+                        }
+                    }
+                    catch(Exception excp)
+                    {
+
+                        return NotFound();
 
                     }
 
@@ -244,13 +253,11 @@ namespace TestFrameworkPortal.Controllers
 
         // POST: api/TestConnections
         [ResponseType(typeof(TestConnection))]
-        public IHttpActionResult PostTestConnection(TestConnection testConnection)
+        [HttpPost]
+        public TestConnection PostTestConnection(TestConnection testConnection)
         {
             testConnection.TestConnectionID = Guid.NewGuid();
             testConnection.CreatedDate = System.DateTime.Now;
-          
-         
-
             db.TestConnections.Add(testConnection);
 
             try
@@ -261,15 +268,11 @@ namespace TestFrameworkPortal.Controllers
             {
                 if (TestConnectionExists(testConnection.TestConnectionID))
                 {
-                    return Conflict();
-                }
-                else
-                {
                     throw;
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = testConnection.TestConnectionID }, testConnection);
+            return  new TestConnection() { CreatedDate = System.DateTime.Now, TestConnectionName = testConnection.TestConnectionName };
         }
 
         // DELETE: api/TestConnections/5

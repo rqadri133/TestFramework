@@ -26,6 +26,7 @@ namespace TestFrameworkPortal.Controllers
 
         [Route("login/User")]
         [ResponseType(typeof(UserInfo))]
+        [HttpPost]
         public IHttpActionResult Login(UserInfo userInfo)
         {
 
@@ -39,16 +40,36 @@ namespace TestFrameworkPortal.Controllers
 
             IQueryable<User> allUsers = null;
 
-
+            UserInfo usr = new UserInfo();
             if (userInfo != null)
             {
 
                 _IsMatchedFound = Security.SecurityLogin.ValidatePassword(userInfo.Pwd, user.PasswordHash);
+                Token alreadyExist = null;
+                Token tokenBase = null;
 
                 if (_IsMatchedFound)
                 {
 
                     allUsers = db.Users.AsQueryable<User>().Where (p=>p.FirstName !=null || p.FirstName !="");
+                    if (alreadyExist == null)
+                    {
+
+                        usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString());
+                        tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
+                    }
+                    else
+                    {
+                        alreadyExist = db.Tokens.ToList().Find(p => p.CreatedBy == user.UserID);
+                        usr.UserID = alreadyExist.TokenDesc;
+
+                    }
+
+                }
+                else
+                {
+                    return NotFound();
+
                 }
 
 
@@ -56,26 +77,9 @@ namespace TestFrameworkPortal.Controllers
 
 
 
-            UserInfo usr = new UserInfo();
-            // generated token and retruned 
-            // Where to keep it 
-         
-
-            // Update Token DB keep this on separate DB is better
-            // for a token generation injection Dodge the hacker to other fake screen keep him trying on that screen with empty server model\
-            // send him back links like yahoo.com
-            // google.com back n back again hacker will give up at some point 
-            Token alreadyExist  = db.Tokens.ToList().Find(p => p.CreatedBy == user.UserID);
-            usr.UserID = alreadyExist.TokenDesc;
-
-            Token tokenBase = null;
-
-            if(alreadyExist == null)
-            {
-                usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString());
-                tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
-            }
-
+       
+            
+            
             db.SaveChanges();
             usr.IsAdmin = false;
              // Dont send admin screen any more its for the display prototype          
