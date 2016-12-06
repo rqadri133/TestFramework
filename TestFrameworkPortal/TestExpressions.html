@@ -21,6 +21,10 @@
         <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-primary"> Update Data Source </button>
         <br />
         <br />
+            <div ng-show="showExpression" class="col-lg-offset-0">
+                <textarea style="width:1400px;height:30px" maxlength="2000" class="active"> {{ evaluatedxpression }} </textarea>
+            </div> 
+            <br />
             <div ng-repeat="counterCondition in counterConditions">
                 <div class="col col-lg-offset-0">
                     <input ng-model="checkthisValue" ng-checked="callUpdate(checkthisValue ,counterCondition.counter)"  type="checkbox" checked="" />
@@ -43,11 +47,11 @@
             <br />
 
             FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
-            <button id="btnAddLogicalCondition" ng-click="addCondition()" class="btn btn-green"> Add Another Condition </button>
+            <button id="btnAddLogicalCondition" ng-click="addCondition(selTestAndOrID)" class="btn btn-green"> Add Another Condition </button>
             <button id="btnSubmitStepTwo" ng-click="generateScript(counterConditions)" class="btn btn-dcyan"> Generate Script </button>
-     
+       
     </div>
-
+ 
 
     <div class="row">
         <div ng-show="showComplexExpression" class="col col-lg-offset-2">

@@ -12,7 +12,6 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
         AuthenticationToken: $rootScope.UserID
     };
       
-
     $scope.addTestType = function () {
         $scope.typeSaved = "";
 
@@ -359,6 +358,9 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     /* test the screen only */
 
     $scope.selTestTypeID = "";
+    $scope.showExpression = false;
+    $scope.evaluatedxpression = "";
+
     $scope.selTestConnectionID = "";
     $scope.allTables = [];
     $scope.removeSelected = false;
@@ -403,12 +405,32 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.showStepOne = true;
     $scope.showStepTwo = false;
 
+
     $scope.showComplexExpression = false;
 
     
-    $scope.addCondition = function () {
-
+    $scope.addCondition = function (Add) {
         index = index + 1;
+        var values = $scope.counterConditions;
+        var _newexpression = "";
+        for (var i = 0; i < values.length ; i++) {
+                if(i==0)
+                {
+                    _newexpression = $scope.counterConditions[i].selTestTableID + "." + $scope.counterConditions[i].selTestTableID + " " + $scope.counterConditions[i].selTestOperandID + " " + $scope.counterConditions[i].checkthisValue;
+                }
+                else 
+                {
+                    _newexpression =   "( "  + _newexpression  +  " ) "  + Add +  " ( "  + $scope.counterConditions[i].selTestTableID + "." + $scope.counterConditions[i].selTestTableID + " " + $scope.counterConditions[i].selTestOperandID  +  " " + $scope.counterConditions[i].checkthisValue  + " ) "
+                }
+               
+            
+
+        }
+
+        $scope.evaluatedxpression = _newexpression;
+
+
+
         $scope.counterConditions.push({
             selTestTableID: '', counter: index , ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE' }]
 
