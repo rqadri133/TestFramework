@@ -33,7 +33,11 @@
                 </div>
                 <div class="col col-lg-offset-0">
                     For the Column :
-                    <select  ng-model="selTestColumnID" ng-options="item.TestColumnName as item.TestColumnName for item in  counterCondition.testColumns"></select>
+                    <select  ng-model="selTestColumnID" ng-change="updateColumn(selTestColumnID,counterCondition.counter)" ng-options="item.TestColumnName as item.TestColumnName for item in  counterCondition.testColumns"></select>
+                    Data Type : <input ng-model="counterCondition.selectedDataType"  type="text"  />
+                    <input ng-model="counterCondition.maxlength"  type="text" />
+                    
+
                     Where It should be : <select ng-model="selTestOperandID"   ng-options="item.Operand as item.Operand for item in testOperands"></select><input type="text" ng-text-change="updateTestValue()"   value="Enter any Alpha Numeric Value" ng-model="checkthisValue" />
                     <!---ng-change="updateColumn(selTestColumnID,counterCondition.counter)
                     ng-change="updateOperand(counterCondition.counter,selTestOperandID)"-->

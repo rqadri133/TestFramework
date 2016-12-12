@@ -119,8 +119,7 @@ namespace TestFrameworkPortal.Controllers
             string testConnectionString = testConnection.TestConnectionString;
 
             var dbTypeName = db.TestConnectionTypes.ToList().Find(p => p.TestConnectionTypeID == testConnectionTypeID).TestConnctionTypeName;
-
-
+            
             switch (dbTypeName)
             {
                 case "SQL SERVER":
@@ -137,7 +136,7 @@ namespace TestFrameworkPortal.Controllers
             {
                 // look for valid token 
                 // never send IDs
-                selectedTokenized = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
+                 selectedTokenized = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
 
                 // User exist in session  
 

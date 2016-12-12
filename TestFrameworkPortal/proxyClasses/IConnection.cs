@@ -61,6 +61,12 @@ namespace TestFrameworkPortal.proxyClasses
             return testTables;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connection_string"></param>
+        /// <param name="table_name"></param>
+        /// <returns></returns>
         public List<TestColumn> GetAllColumns(string connection_string, string table_name)
         {
             SqlConnection connection = new SqlConnection(connection_string);
@@ -92,12 +98,19 @@ namespace TestFrameworkPortal.proxyClasses
             {
                 connection.Close();
             }
+            int _maxlength = 0;
 
             if (ds.Tables.Count > 0)
             {
+
                 foreach (DataRow row in ds.Tables[0].Select(_filterExpression))
                 {
-                    columns.Add(new TestColumn { TestColumnID = Guid.NewGuid(), TestColumnName = row["COLUMN_NAME"].ToString() });
+                    if (row["CHARACTER_MAXIMUM_LENGTH"].ToString() != "" )
+                    {
+                        _maxlength = Convert.ToInt32(row["CHARACTER_MAXIMUM_LENGTH"]);
+                    }
+
+                    columns.Add(new TestColumn { TestColumnID = Guid.NewGuid(), TestColumnName = row["COLUMN_NAME"].ToString(), TestColumnType = row["DATA_TYPE"].ToString(), MaxLengthAllowed =  _maxlength });
 
                 }
 

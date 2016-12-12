@@ -100,6 +100,13 @@ namespace TestFrameworkPortal.proxyClasses
         }
 
 
+        [DataMember]
+        public int MaxLengthAllowed
+        {
+            get;
+            set;
+
+        }
 
 
     }
