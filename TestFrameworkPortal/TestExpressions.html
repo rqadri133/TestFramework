@@ -50,7 +50,7 @@
 
             FOR "AND OR"  CONDITION REPEAT ABOVE PROCESS : <select ng-model="selTestAndOrID" ng-options="item.lexicalToken as item.lexicalToken for item in testLogicals"></select>
             <button id="btnAddLogicalCondition" ng-click="addCondition(selTestAndOrID)" class="btn btn-green"> Add Another Condition </button>
-            <button id="btnSubmitStepTwo" ng-click="generateScript(counterConditions)" class="btn btn-dcyan"> Generate Script </button>
+            <button id="btnSubmitStepTwo" ng-click="ExecuteScript(counterConditions)" class="btn btn-dcyan"> Generate Script </button>
        
     </div>
  
@@ -58,7 +58,7 @@
     <div class="row">
         <div ng-show="showComplexExpression" class="col col-lg-offset-0">
             Generated Expression
-            <input type="text" maxlength="1000" size="1000" ng-model="evaluatedxpression"  />
+            <input maxlength="1200"  ng-model="evaluatedxpression"  />
         </div>
     </div>
 

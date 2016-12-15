@@ -55,7 +55,7 @@ namespace TestFrameworkPortal.Controllers
                     if (alreadyExist == null)
                     {
 
-                        usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString());
+                        usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString()) + "@@^%" + Security.SecurityLogin.CreateHash("1SSSSOXZ18^$#^%$%");
                         tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
                     }
                     else

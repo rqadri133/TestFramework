@@ -39,9 +39,42 @@ namespace TestFrameworkPortal.Controllers
             return Ok(testConnection);
         }
 
+        [Route("testdependencies/RunAll")]
+        [ResponseType(typeof(TestDependencies))]
+        [HttpPost]
+
+        public TestCase RunTestCase(TestDependencies caseDependendency)
+        {
+
+            try
+            {
+
+
+
+            }
+            catch(Exception excp)
+            {
+
+
+
+            }
+            finally
+            {
+
+
+
+            }
+
+
+
+
+        }
+
+
         [Route("testdependencies/LoadAll")]
         [ResponseType(typeof(TestDependencies))]
         [HttpPost]
+
         public IHttpActionResult GetTestDependencies(proxyClasses.Token token)
         {
             TestDependencies dependencies = new TestDependencies();

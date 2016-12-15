@@ -116,6 +116,9 @@ textarea {
   margin: 0;
   font: inherit;
   color: inherit;
+  max-width : 1200px;
+  max-height :600px;
+
 }
 button {
   overflow: visible;
@@ -1095,6 +1098,9 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  max-height : 600px;
+  max-width :1200px
+
 }
 a {
   color: #337ab7;
