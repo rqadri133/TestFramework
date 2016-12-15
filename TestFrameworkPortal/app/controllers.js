@@ -364,12 +364,21 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     $scope.selTestConnectionID = "";
     $scope.allTables = [];
     $scope.removeSelected = false;
+    $scope.testOperands = [
+    { Operand: '>', Operation: 'Greater Then' },
+    { Operand: '<', Operation: 'Less Then' },
+    { Operand: '==', Operation: 'Equal' },
+    { Operand: '<=', Operation: 'Less Then Equal' },
+    { Operand: '>=', Operation: 'Greater Then Equal' }
+    ];
+
 
     var index = 0;
     $scope.counterConditions = [
-       { selTestTableID: '', counter: index, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE' ,dataTypeAllowed : "Text"  , maxlength : 0   }] , selectedDataType :"nvarchar" , maxlength : 0 }];
+       { selTestTableID: '', counter: index, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: $scope.testOperands[0].Operand , checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE' ,dataTypeAllowed : "Text"  , maxlength : 0   }] , selectedDataType :"nvarchar" , maxlength : 0 }];
     
-    
+
+ 
      $scope.testTables =  [
        { TestTableID: '21313UREUREERERRER13', TestTableName: 'Select Table Name' }
     ];
@@ -408,7 +417,18 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
     $scope.showComplexExpression = false;
 
-    
+
+
+    $scope.updateOperand = function (selTestOperandID, counter) {
+
+
+
+
+
+
+    };
+
+
     $scope.addCondition = function (Add) {
         index = index + 1;
         var values = $scope.counterConditions;
@@ -432,7 +452,7 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 
 
         $scope.counterConditions.push({
-            selTestTableID: '', counter: index, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: '', checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE', dataTypeAllowed: "Text" , maxlength :0 }] ,  selectedDataType :"nvarchar" , maxlength : 0
+            selTestTableID: '', counter: index, ConditionRepeat: '', selTestColumnID: '', selTestAndOrID: '', selTestOperandID: $scope.testOperands[0].Operand , checkthisValue: 0, testColumns: [{ TestColumnID: '34343434', TestColumnName: 'KUWEWE', dataTypeAllowed: "Text" , maxlength :0 }] ,  selectedDataType :"nvarchar" , maxlength : 0
 
         });
 
@@ -440,6 +460,8 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     };
     
     $scope.showRemove = false;
+    
+
 
     $scope.callUpdate = function (chkRemoved, counter) {
 
@@ -519,10 +541,13 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     };
 
 
-    $scope.updateColumn = function (selTestColumn, counter) {
+    $scope.updateColumn = function (selTestColumn,selOperand, counter) {
         // for now just update column and later display readonly corresponding  datatype to know what value is allowed 
         // also once value entered and mouse leave on key down display not a valid data type vaue entered value entered here is different 
         $scope.counterConditions[counter].selTestColumnID = selTestColumn;
+        $scope.counterConditions[counter].selTestOperandID = selOperand;
+
+
                
 
         for (var i = 0; i < $scope.counterConditions[counter].testColumns.length ; i++) {

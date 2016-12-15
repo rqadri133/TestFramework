@@ -21,9 +21,7 @@
         <button id="btnUpdateDataSource" ng-click="addDataSource()" class="btn btn-primary"> Update Data Source </button>
         <br />
         <br />
-            <div ng-show="showExpression" class="col-lg-offset-0">
-                <textarea style="width:1400px;height:30px" maxlength="2000" class="active"> {{ evaluatedxpression }} </textarea>
-            </div> 
+            
             <br />
             <div ng-repeat="counterCondition in counterConditions">
                 <div class="col col-lg-offset-0">
@@ -33,12 +31,12 @@
                 </div>
                 <div class="col col-lg-offset-0">
                     For the Column :
-                    <select  ng-model="selTestColumnID" ng-change="updateColumn(selTestColumnID,counterCondition.counter)" ng-options="item.TestColumnName as item.TestColumnName for item in  counterCondition.testColumns"></select>
+                    <select  ng-model="selTestColumnID" ng-change="updateColumn(selTestColumnID, selTestOperandID, counterCondition.counter)" ng-options="item.TestColumnName as item.TestColumnName for item in  counterCondition.testColumns"></select>
                     Data Type : <input ng-model="counterCondition.selectedDataType"  type="text"  />
                     <input ng-model="counterCondition.maxlength"  type="text" />
                     
 
-                    Where It should be : <select ng-model="selTestOperandID"   ng-options="item.Operand as item.Operand for item in testOperands"></select><input type="text" ng-text-change="updateTestValue()"   value="Enter any Alpha Numeric Value" ng-model="checkthisValue" />
+                    Where It should be : <select ng-model="selTestOperandID"  ng-change="updateOperand(selTestOperandID,counterCondition.counter)"   ng-options="item.Operand as item.Operand for item in testOperands"></select><input type="text" ng-text-change="updateTestValue()"   value="Enter any Alpha Numeric Value" ng-model="checkthisValue" />
                     <!---ng-change="updateColumn(selTestColumnID,counterCondition.counter)
                     ng-change="updateOperand(counterCondition.counter,selTestOperandID)"-->
 
@@ -56,11 +54,11 @@
        
     </div>
  
-
+    <br />
     <div class="row">
-        <div ng-show="showComplexExpression" class="col col-lg-offset-2">
+        <div ng-show="showComplexExpression" class="col col-lg-offset-0">
             Generated Expression
-            <input type="text" max="1000" ng-model="complexExression" value="tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName OR|AND|==|Equal tableName.ColumnName >|<|==|!= somvalue|tableName.ColumnName" />
+            <input type="text" maxlength="1000" size="1000" ng-model="evaluatedxpression"  />
         </div>
     </div>
 
