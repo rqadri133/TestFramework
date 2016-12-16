@@ -407,6 +407,16 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
        { lexicalToken: '==' ,  Operation: 'AND OPERATION' }
     ];
 
+    $scope.testParameters = [
+       { TestParamTypeName: 'Character', Operation: 'Allowed only Characters' , Length: 0 , Precesion: 0    },
+       { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', Length: 0, Precesion: 0 },
+       { TestParamTypeName: 'Decimal', Operation: 'Decimal floating Values', Length: 10, Precesion: 2 },
+       { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers', Length: 12, Precesion: 0 }
+   
+    ];
+
+
+
     
     $scope.selTestAndOrID = $scope.testLogicals[0].lexicalToken;
 

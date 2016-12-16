@@ -64,6 +64,68 @@
                 </md-content>
             </md-tab>
             
+            <md-tab label="Test Parameter">
+                <md-content class="md-padding">
+                    <div class="row">
+                        <div class="col col-md-offset-0">
+                            <div class="widget widget-content">
+                                <form ng-submit="addTestParameter" name="Test Type">
+                                    <div class="col col-md-offset-0">
+                                        <div class="widget widget-content">
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <td>
+                                                        <b>Enter Test Parameter Name </b> <br />
+                                                        <input required="required" ng-model="testConTypeInfo" type="text" name="testcontype" />
+                                                    </td>
+                                                    </tr>
+                                                  <tr>
+                                                    <td>
+                                                        <b>Select Test Parameter Data Type </b> <br />
+                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestParamTypeName as item.TestParamTypeName for item in testParameters"></select>
+                                                   </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b> Length </b> <br />
+                                                        <input required="required" ng-model="testParamLength" type="text" readonly="readonly" />
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showDecPlaces">
+                                                    <td>
+                                                        <b> Number of Decimal Places Allowed </b> <br />
+                                                        <input required="required" ng-model="testParamDecPlaces" type="text" readonly="readonly"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Test Parameter Value</b> <br />
+                                                         <input required="required" ng-model="testParamValue" type="text" name="testparamValue" />
+                                                     </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <button id="btnSaveTestParamter" type="submit" class="btn btn-primary"> Save  </button>
+                                                        <button id="btnCancelTestParameter" class="btn btn-danger"> Cancel </button>
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="col-lg-offset-0">
+                                                <label ng-show="noDemoMessage" class="label label-success"> {{msgSavedTestParamSaved}}  </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
 
         </md-tabs>
     </md-content>
