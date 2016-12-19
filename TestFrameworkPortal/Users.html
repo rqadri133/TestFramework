@@ -86,16 +86,17 @@
                                                    </td>
 
                                                 </tr>
-                                                <tr>
+                                                
+                                                <tr ng-show="showLengthParam">
                                                     <td>
                                                         <b> Length </b> <br />
-                                                        <input required="required" ng-model="testParamLength" type="text" readonly="readonly" />
+                                                        <input required="required"   ng-model="testParamLength" type="text"  />
                                                     </td>
                                                 </tr>
                                                 <tr ng-show="showDecPlaces">
                                                     <td>
                                                         <b> Number of Decimal Places Allowed </b> <br />
-                                                        <input required="required" ng-model="testParamDecPlaces" type="text" readonly="readonly"/>
+                                                        <input required="required" ng-model="testParamDecPlaces" type="text" />
                                                     </td>
                                                 </tr>
                                                 <tr>

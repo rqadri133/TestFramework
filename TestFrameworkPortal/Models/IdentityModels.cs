@@ -29,5 +29,7 @@ namespace TestFrameworkPortal.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TestFrameworkPortal.TestScriptParameter> TestScriptParameters { get; set; }
     }
 }

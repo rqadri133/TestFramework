@@ -36,15 +36,15 @@
         <EntityTypeShape EntityType="TMSModel.TestResultTemplate1" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestScenario" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestScript" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameter" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMSModel.TestScriptParameter" Width="2" PointX="2.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestScriptParameterType" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestTargetFrameworkVersion" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestType" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.Token" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.User" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestScenario1" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameter1" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameterType1" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMSModel.TestScriptParameter1" Width="1.875" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMSModel.TestScriptParameterType1" Width="2.625" PointX="10.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestScript1" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.TestType1" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMSModel.User1" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />

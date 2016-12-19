@@ -5,7 +5,61 @@
 
 app.controller('LoginController', function ($scope, $http, $rootScope, TestFramworkService) {
   
-  // its tokenization based so the service dependency injection applied
+    // its tokenization based so the service dependency injection applied
+
+    $scope.testParameters = [
+       { TestParamTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false , LengthAllowed :true },
+       { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', PrecesionAllowed: false, LengthAllowed: true },
+       { TestParamTypeName: 'Decimal', Operation: 'Decimal floating Values', PrecesionAllowed: true ,  LengthAllowed: false },
+       { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers',   PrecesionAllowed: false , LengthAllowed: false }
+
+    ];
+
+
+
+
+    $scope.showLengthParam = false;
+    $scope.showDecPlaces = false;
+    
+    $scope.updateParamType = function(selectedParamType)
+    {
+        for (var i=0 ;  i < $scope.testParameters.length ; i++)
+        {
+            if($scope.testParameters[i].TestParamTypeName == selectedParamType)
+            {
+                if ($scope.testParameters[i].LengthAllowed == false) {
+                    $scope.showLengthParam = false;
+                    $scope.showDecPlaces = false;
+                }
+                else
+                {
+                    $scope.showLengthParam = true;
+                    $scope.showDecPlaces = false;
+
+                }
+
+                if ($scope.testParameters[i].PrecesionAllowed == false) {
+                    $scope.showDecPlaces = false;
+                }
+                else {
+                    $scope.showDecPlaces = true;
+
+                }
+ 
+                break;
+
+            }
+
+
+
+        }
+
+
+
+
+    }
+
+
     $scope.testConTypeInfo = "";
         $scope.testTypeName = "";
     var token = {
@@ -405,14 +459,6 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
        { lexicalToken: '||'  , Operation: 'OR CONDITION'  },
        { lexicalToken: '&&',   Operation: 'AND OPERATION' },
        { lexicalToken: '==' ,  Operation: 'AND OPERATION' }
-    ];
-
-    $scope.testParameters = [
-       { TestParamTypeName: 'Character', Operation: 'Allowed only Characters' , Length: 0 , Precesion: 0    },
-       { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', Length: 0, Precesion: 0 },
-       { TestParamTypeName: 'Decimal', Operation: 'Decimal floating Values', Length: 10, Precesion: 2 },
-       { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers', Length: 12, Precesion: 0 }
-   
     ];
 
 

@@ -13,7 +13,7 @@ namespace TestFrameworkPortal.proxyClasses
     {
         List<TestTable> GetAllTables(string connection_string);
         List<TestColumn> GetAllColumns(string connection_string, string table_name);
-        TestCase RunTest(string connection_string, string expression);
+        TestCase RunTest(TestDependencies dependencies);
 
     }
 
@@ -63,10 +63,11 @@ namespace TestFrameworkPortal.proxyClasses
             return testTables;
         }
 
-        public TestCase RunTest(string connection_string, string expression)
+        public TestCase RunTest(TestDependencies dependencies)
         {
 
 
+            return new TestCase();
 
         }
 
@@ -154,6 +155,16 @@ namespace TestFrameworkPortal.proxyClasses
             return new List<TestColumn>();
 
         }
+
+
+        public TestCase RunTest(TestDependencies dependencies)
+        {
+
+
+            return new TestCase();
+
+        }
+
     }
 
 
