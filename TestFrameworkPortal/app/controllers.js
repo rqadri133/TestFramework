@@ -9,7 +9,9 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     // Offline Testing 
 
 
-    
+    $scope.selectedClassPropertyType = "";
+
+
     $scope.testParameters = [
        { TestParamTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false, LengthAllowed: true },
        { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', PrecesionAllowed: false, LengthAllowed: true },
@@ -18,6 +20,15 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
     ];
 
+    // the above is just for test reasons 
+    // the below is for any property defined for Class
+    $scope.testClassPropTypes = [
+       { TestClassPropTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false, LengthAllowed: true },
+       { TestClassPropTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', PrecesionAllowed: false, LengthAllowed: true },
+       { TestClassPropTypeName: 'Decimal', Operation: 'Decimal floating Values', PrecesionAllowed: true, LengthAllowed: false },
+       { TestClassPropTypeName: 'Integer', Operation: 'Non Decimal Numbers', PrecesionAllowed: false, LengthAllowed: false }
+
+    ];
 
     // Separation of Concern Model , A Model is away from any concern
     $scope.testClassPropertyArr = [

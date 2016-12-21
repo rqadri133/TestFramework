@@ -103,9 +103,26 @@
                                                     <td>
                                                         <b>Test Parameter Value</b> <br />
                                                          <input required="required" ng-model="testParamValue" type="text" name="testparamValue" />
+
                                                      </td>
                                                 </tr>
-                                               
+                                               <tr ng-show="showPropertyWindow">
+
+                                                   <td>
+                                                       <b>Test Class Property Name</b> <br />
+                                                       <input required="required" ng-model="testPropertyName" type="text" name="testparamValue" />
+
+                                                   </td>
+
+                                                   <td>
+                                                       <b>Test Class Property Type</b> <br />
+                                                        <select ng-model="selectedClassPropertyType" ng-change="updatePropType(selectedClassPropertyType)" ng-options="item.TestClassPropTypeName as item.TestClassPropTypeName for item in testClassPropTypes"></select>
+                                                    </td>
+
+
+
+                                               </tr>
+
 
 
                                                 <tr>
