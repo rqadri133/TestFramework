@@ -82,7 +82,7 @@
                                                   <tr>
                                                     <td>
                                                         <b>Select Test Parameter Data Type </b> <br />
-                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestParamTypeName as item.TestParamTypeName for item in testParameters"></select>
+                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestScriptParameterTypeName as item.TestScriptParameterTypeName for item in testParameters"></select>
                                                    </td>
 
                                                 </tr>
@@ -99,13 +99,13 @@
                                                         <input required="required" ng-model="testParamDecPlaces" type="text" />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr ng-show="valueNeeded">
                                                     <td>
                                                         <b>Test Parameter Value</b> <br />
                                                          <input required="required" ng-model="testParamValue" type="text" name="testparamValue" />
                                                      </td>
                                                 </tr>
-
+                                               
 
 
                                                 <tr>

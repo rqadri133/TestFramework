@@ -12,16 +12,13 @@ namespace TestFrameworkPortal
     using System;
     using System.Collections.Generic;
     
-    public partial class User1
+    public partial class AspNetUserClaim
     {
-        public System.Guid UserID { get; set; }
-        public string LoginName { get; set; }
-        public string PasswordHash { get; set; }
-        public string EmailAddress { get; set; }
-        public string PhoneNumber { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string CompanyName { get; set; }
-        public string CompanyWebSite { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

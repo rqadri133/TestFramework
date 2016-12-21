@@ -6,43 +6,70 @@
 app.controller('LoginController', function ($scope, $http, $rootScope, TestFramworkService) {
   
     // its tokenization based so the service dependency injection applied
+    // Offline Testing 
 
+
+    
     $scope.testParameters = [
-       { TestParamTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false , LengthAllowed :true },
+       { TestParamTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false, LengthAllowed: true },
        { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', PrecesionAllowed: false, LengthAllowed: true },
-       { TestParamTypeName: 'Decimal', Operation: 'Decimal floating Values', PrecesionAllowed: true ,  LengthAllowed: false },
-       { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers',   PrecesionAllowed: false , LengthAllowed: false }
+       { TestParamTypeName: 'Decimal', Operation: 'Decimal floating Values', PrecesionAllowed: true, LengthAllowed: false },
+       { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers', PrecesionAllowed: false, LengthAllowed: false }
 
     ];
 
 
+    // Separation of Concern Model , A Model is away from any concern
+    $scope.testClassPropertyArr = [
 
+        { TestPropertyName: 'Dummy', TestPropertyType: 'Dummy', Length: 0, PrecesionAllowed: false, ClassName: 'TestModel' }
+
+    ];
+
+    
+    
+    var addTestParametersType = TestFramworkService.getTestParameters(testType);
+
+
+    addTestParametersType.then(function (d) {
+                   
+        $scope.testParameters = d.data;
+
+    });
 
     $scope.showLengthParam = false;
     $scope.showDecPlaces = false;
-    
+    $scope.showPropertyWindow = false;
+    $scope.valueNeeded = true;
+
     $scope.updateParamType = function(selectedParamType)
     {
         for (var i=0 ;  i < $scope.testParameters.length ; i++)
         {
             if($scope.testParameters[i].TestParamTypeName == selectedParamType)
             {
-                if ($scope.testParameters[i].LengthAllowed == false) {
-                    $scope.showLengthParam = false;
+                //public Nullable<bool> IsClass { get; set; }
+                //public Nullable<bool> IsPrecisionAllowed { get; set; }
+
+                if ($scope.testParameters[i].IsPrecisionAllowed == false) {
                     $scope.showDecPlaces = false;
                 }
                 else
                 {
-                    $scope.showLengthParam = true;
-                    $scope.showDecPlaces = false;
+                    $scope.showDecPlaces = true;
 
                 }
 
-                if ($scope.testParameters[i].PrecesionAllowed == false) {
-                    $scope.showDecPlaces = false;
+                if ($scope.testParameters[i].IsClass == false) {
+                    $scope.showPropertyWindow = false;
                 }
                 else {
-                    $scope.showDecPlaces = true;
+
+                    $scope.showPropertyWindow = true;
+                    $scope.showLengthParam = false;
+                    $scope.showDecPlaces = false;
+                    $scope.valueNeeded = false;
+
 
                 }
  

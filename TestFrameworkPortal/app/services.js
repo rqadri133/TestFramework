@@ -92,6 +92,11 @@ app.service("TestFramworkService", function ($http ,$rootScope)
 
     };
 
+    this.getTestParameters = function () {
+        return $http.get("api/TestScriptParameterTypes")
+
+    };
+
 
     this.getClientIpAddress = function () {
         var json = 'http://ipv4.myexternalip.com/json';

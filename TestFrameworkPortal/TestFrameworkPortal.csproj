@@ -233,6 +233,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -243,9 +255,13 @@
     <Compile Include="Controllers\TestConnectionTypesController.cs" />
     <Compile Include="Controllers\TestOperandsController.cs" />
     <Compile Include="Controllers\TestScriptParametersController.cs" />
+    <Compile Include="Controllers\TestScriptParameterTypesController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
     <Compile Include="Controllers\TokenSystemController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ErrorLogger.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
@@ -398,9 +414,6 @@
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>TMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User1.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -1287,7 +1300,6 @@
       <DependentUpon>TMS.edmx</DependentUpon>
       <LastGenOutput>TMS.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TMS.edmx.sql" />
     <Content Include="TMS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TMS.edmx</DependentUpon>

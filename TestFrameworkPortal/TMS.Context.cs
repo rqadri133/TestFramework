@@ -25,6 +25,11 @@ namespace TestFrameworkPortal
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<ErrorLogger> ErrorLoggers { get; set; }
         public virtual DbSet<RegressFileTest> RegressFileTests { get; set; }
         public virtual DbSet<RegressFileTest1> RegressFileTests1 { get; set; }
@@ -57,16 +62,15 @@ namespace TestFrameworkPortal
         public virtual DbSet<TestScenario> TestScenarios { get; set; }
         public virtual DbSet<TestScript> TestScripts { get; set; }
         public virtual DbSet<TestScriptParameter> TestScriptParameters { get; set; }
-        public virtual DbSet<TestScriptParameterType> TestScriptParameterTypes { get; set; }
         public virtual DbSet<TestTargetFrameworkVersion> TestTargetFrameworkVersions { get; set; }
         public virtual DbSet<TestType> TestTypes { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<TestScenario1> TestScenarios1 { get; set; }
         public virtual DbSet<TestScriptParameter1> TestScriptParameters1 { get; set; }
+        public virtual DbSet<TestScriptParameterType> TestScriptParameterTypes { get; set; }
         public virtual DbSet<TestScriptParameterType1> TestScriptParameterTypes1 { get; set; }
         public virtual DbSet<TestScript1> TestScripts1 { get; set; }
         public virtual DbSet<TestType1> TestTypes1 { get; set; }
-        public virtual DbSet<User1> Users1 { get; set; }
     }
 }
