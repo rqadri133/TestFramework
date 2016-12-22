@@ -6,6 +6,7 @@ var app;
 (function () {
 
     app = angular.module("TFApp", ['ng','ngResource','ngMaterial', 'ngMessages' ]).run(function ($rootScope) {
+
         $rootScope.IsLogin = false;
         $rootScope.parentObj = {};
         $rootScope.parentObj.afterLogin = false;

@@ -11,7 +11,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
     $scope.selectedClassPropertyType = "";
 
-
+    /*
     $scope.testParameters = [
        { TestParamTypeName: 'Character', Operation: 'Allowed only Characters', PrecesionAllowed: false, LengthAllowed: true },
        { TestParamTypeName: 'NVarchar', Operation: 'NVarchar as Alpha Numeric', PrecesionAllowed: false, LengthAllowed: true },
@@ -19,6 +19,17 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
        { TestParamTypeName: 'Integer', Operation: 'Non Decimal Numbers', PrecesionAllowed: false, LengthAllowed: false }
 
     ];
+    */
+
+    $scope.testParameters = [];
+    var addTestParametersType = TestFramworkService.getTestParameters();
+
+
+    addTestParametersType.then(function (d) {
+
+        $scope.testParameters = d.data;
+
+    });
 
     // the above is just for test reasons 
     // the below is for any property defined for Class
@@ -39,16 +50,9 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
     
     
-    var addTestParametersType = TestFramworkService.getTestParameters(testType);
+  
 
-
-    addTestParametersType.then(function (d) {
-                   
-        $scope.testParameters = d.data;
-
-    });
-
-    $scope.showLengthParam = false;
+    $scope.showLengthParam = true;
     $scope.showDecPlaces = false;
     $scope.showPropertyWindow = false;
     $scope.valueNeeded = true;
@@ -57,7 +61,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     {
         for (var i=0 ;  i < $scope.testParameters.length ; i++)
         {
-            if($scope.testParameters[i].TestParamTypeName == selectedParamType)
+            if ($scope.testParameters[i].TestScriptParameterTypeName == selectedParamType)
             {
                 //public Nullable<bool> IsClass { get; set; }
                 //public Nullable<bool> IsPrecisionAllowed { get; set; }
@@ -73,11 +77,12 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
                 if ($scope.testParameters[i].IsClass == false) {
                     $scope.showPropertyWindow = false;
+                    $scope.showLengthParam = false;
                 }
                 else {
 
                     $scope.showPropertyWindow = true;
-                    $scope.showLengthParam = false;
+                
                     $scope.showDecPlaces = false;
                     $scope.valueNeeded = false;
 
