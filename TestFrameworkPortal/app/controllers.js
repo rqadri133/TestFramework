@@ -91,6 +91,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
                 if ($scope.testParameters[i].IsClass == false) {
                     $scope.showPropertyWindow = false;
                     $scope.showLengthParam = false;
+                    $scope.showClassWindow = false;
                 }
                 else {
 
