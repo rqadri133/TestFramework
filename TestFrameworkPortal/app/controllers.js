@@ -22,12 +22,14 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     */
 
     $scope.testParameters = [];
+    $scope.testClassPropTypes = [];
     var addTestParametersType = TestFramworkService.getTestParameters();
 
 
     addTestParametersType.then(function (d) {
 
         $scope.testParameters = d.data;
+        $scope.testClassPropTypes = d.data;
 
     });
 
@@ -42,20 +44,30 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     ];
 
     // Separation of Concern Model , A Model is away from any concern
-    $scope.testClassPropertyArr = [
+    $scope.testProperties = [
 
-        { TestPropertyName: 'Dummy', TestPropertyType: 'Dummy', Length: 0, PrecesionAllowed: false, ClassName: 'TestModel' }
+        { testPropertyName: 'Dummy', testPropertyType: 'Dummy', Length: 0, PrecesionAllowed: false, ClassName: 'TestModel' }
 
     ];
 
-    
-    
-  
+    $scope.testClassName = "";
+
+    $scope.addProperty  = function(className)  
+    {
+        $scope.testProperties.push({
+            testPropertyName: 'Dummy', testPropertyType: 'Dummy', Length: 0, PrecesionAllowed: false, ClassName: className
+            
+        });
+        $scope.showPropertyWindow = true;
+
+    }
+      
 
     $scope.showLengthParam = true;
     $scope.showDecPlaces = false;
     $scope.showPropertyWindow = false;
     $scope.valueNeeded = true;
+    $scope.showClassWindow = false;
 
     $scope.updateParamType = function(selectedParamType)
     {
@@ -81,8 +93,8 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
                 }
                 else {
 
-                    $scope.showPropertyWindow = true;
-                
+                    $scope.showPropertyWindow = false;
+                    $scope.showClassWindow = true;
                     $scope.showDecPlaces = false;
                     $scope.valueNeeded = false;
 

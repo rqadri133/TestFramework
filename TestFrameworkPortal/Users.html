@@ -108,23 +108,29 @@
 
                                                      </td>
                                                 </tr>
-                                               <tr  ng-show="showPropertyWindow"    ng-repeat=" in counterConditions" >
-                                                   
+                                                <tr ng-show="showClassWindow">
+                                                    <td>
+                                                        <b>Test Class  Name</b> <br />
+                                                        <input required="required" ng-model="testClassName" type="text"  />
+                                                    </td>
+                                                </tr>
 
-                                                           <td>
+                                               <tr  ng-show="showPropertyWindow"  ng-repeat="property  in testProperties" >
+                                                          <td>
                                                                <b>Test Class Property Name</b> <br />
-                                                               <input required="required" ng-model="testPropertyName" type="text" name="testparamValue" />
+                                                               <input required="required" ng-model="property.testPropertyName" type="text" name="testparamValue" />
                                                            </td>
                                                            <td>
                                                                <b>Test Class Property Type</b> <br />
-                                                               <select ng-model="selectedClassPropertyType" ng-change="updatePropType(selectedClassPropertyType)" ng-options="item.TestClassPropTypeName as item.TestClassPropTypeName for item in testClassPropTypes"></select>
+                                                               <select ng-model="property.testPropertyType" ng-change="updatePropType(property.testPropertyType)" ng-options="item.TestClassPropTypeName as item.TestClassPropTypeName for item in testClassPropTypes"></select>
                                                            </td>
-                                                   
-
                                                </tr>
-
-
-
+                                                <tr>
+                                                    <td ng-show="showClassWindow">
+                                                        <button id="btnAddPropertyToClss"  ng-click="addProperty(testClassName)" type="button" class="btn btn-primary"> Add Property </button>
+                                                    </td>
+                                                </tr>
+                                                
                                                 <tr>
                                                     <td>
                                                         <button id="btnSaveTestParamter" type="submit" class="btn btn-primary"> Save  </button>
