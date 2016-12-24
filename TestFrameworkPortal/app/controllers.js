@@ -58,6 +58,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
             testPropertyName: 'Dummy', testPropertyType: 'Dummy', Length: 0, PrecesionAllowed: false, ClassName: className
             
         });
+
         $scope.showPropertyWindow = true;
 
     }
@@ -95,6 +96,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
                     $scope.showPropertyWindow = false;
                     $scope.showClassWindow = true;
+                    $scope.showLengthParam = false;
                     $scope.showDecPlaces = false;
                     $scope.valueNeeded = false;
 
