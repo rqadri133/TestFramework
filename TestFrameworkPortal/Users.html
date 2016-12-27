@@ -114,6 +114,15 @@
                                                         <input required="required" ng-model="testClassName" type="text"  />
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Select Class  Name For Property Type</b> <br />
+                                                        <!---this is for the Parent Class for not having any Parent inheritance just select None -->
+                                                        <select ng-model="selectParentClass"  ng-options="item.TestClassID as item.TestClassID for item in testClasses"></select>
+                                                   </td>
+                                                </tr>
+
+
 
                                                <tr  ng-show="showPropertyWindow"  ng-repeat="property  in testProperties" >
                                                           <td>
@@ -122,8 +131,16 @@
                                                            </td>
                                                            <td>
                                                                <b>Test Class Property Type</b> <br />
-                                                               <select ng-model="property.testPropertyType" ng-change="updatePropType(property.testPropertyType)" ng-options="item.TestClassPropTypeName as item.TestClassPropTypeName for item in testClassPropTypes"></select>
+                                                               <select ng-model="property.testPropertyType" ng-change="updatePropType(property.testPropertyType)" ng-options="item.TestClassPropTypeName as item.TestClassPropTypeName for item in testParameters"></select>
                                                            </td>
+                                                   <td>
+                                                       <b>Parent Class  Name</b> <br />
+                                                       <select ng-model="selectParentClassPropType"  ng-options="item.TestClassID as item.TestClassID for item in testClasses"></select>
+                                                   </td>
+
+                                                             <!----- Recurrsion for class then below will show as Test Class Property Type as Class-->
+
+
                                                </tr>
                                                 <tr>
                                                     <td ng-show="showClassWindow">

@@ -1,0 +1,38 @@
+﻿<div ng-controller="TestRobot as testrobotctrl" class="row">
+    <form id="frmTestCase" ng-submit="addTestCase()">
+        <div class="col col-md-offset-1">
+            <div class="widget widget-content">
+                <table class="table table-condensed">
+                    <tr>
+                        <td>
+                            <b>Enter Test Robot Name</b> <br />
+                            <input required="required" title="CaseId" id="txtCaseID" ng-model="selTestCaseDescName" type="text" />
+                        </td>
+                        <td>
+                            <b>Select Test Robot type</b> <br />
+                            <select ng-model="selTestRobotTypeID" ng-options="item.TestRobertTypeID as item.TestRobertTypeID for item in testRobertTypes"></select>
+                        </td>
+
+           
+                    </tr>
+                    <tr>
+                        <td align="right" class="col col-md-offset-1">
+                            <button id="btnCaseSave" class="btn btn-primary"> Save  </button>
+                            <button id="btnCancel" class="btn btn-danger"> Cancel </button>
+                        </td>
+
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </form>
+
+    <div>
+        <label id="btnCaseSave" class="btn btn-success"> {{testCaseCreationMessage}}  </label>
+    </div>
+</div>
