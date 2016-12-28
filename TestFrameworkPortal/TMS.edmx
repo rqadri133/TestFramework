@@ -330,6 +330,22 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestClass' does not h
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestMicroController' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestMicroController">
+          <Key>
+            <PropertyRef Name="TestMicroControllerID" />
+            <PropertyRef Name="TestMicroControllerName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestMicroControllerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestMicroControllerName" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="TestMicroControllerRealNameWithCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="TestMicroControllerHexFile" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="TestNode">
           <Key>
             <PropertyRef Name="TestNodeID" />
@@ -438,11 +454,15 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobot' does not h
           <Key>
             <PropertyRef Name="TestRobotID" />
             <PropertyRef Name="TestRobotName" />
+            <PropertyRef Name="TestRobotImagePath" />
+            <PropertyRef Name="TestRobotDesc" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestRobotID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TestRobotName" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TestRobotImagePath" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestRobotDesc" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -463,6 +483,26 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotAction' does
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotConfigurations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestRobotConfigurations">
+          <Key>
+            <PropertyRef Name="TestRobotConfigurationID" />
+            <PropertyRef Name="TestRobotID" />
+            <PropertyRef Name="TestMicroControllerID" />
+            <PropertyRef Name="TestRobotActionAsscociatedID" />
+            <PropertyRef Name="RobotConfigurationDescription" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotConfigurationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestMicroControllerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotActionAsscociatedID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RobotConfigurationDescription" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotParameter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TestRobotParameter">
           <Key>
@@ -472,7 +512,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotParameter' d
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestRobotParameterID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TestRobotParamterName" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotParamterName" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="TestRobotParameterValue" Type="nvarchar" MaxLength="2000" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
@@ -767,6 +807,16 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
     [TestClass].[CreatedBy] AS [CreatedBy]
     FROM [dbo].[TestClass] AS [TestClass]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="TestMicroController" EntityType="Self.TestMicroController" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestMicroController].[TestMicroControllerID] AS [TestMicroControllerID], 
+    [TestMicroController].[TestMicroControllerName] AS [TestMicroControllerName], 
+    [TestMicroController].[TestMicroControllerRealNameWithCode] AS [TestMicroControllerRealNameWithCode], 
+    [TestMicroController].[TestMicroControllerHexFile] AS [TestMicroControllerHexFile], 
+    [TestMicroController].[CreatedDate] AS [CreatedDate], 
+    [TestMicroController].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestMicroController] AS [TestMicroController]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="TestProperty" EntityType="Self.TestProperty" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TestProperty].[TestPropertyID] AS [TestPropertyID], 
@@ -788,6 +838,8 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             <DefiningQuery>SELECT 
     [TestRobot].[TestRobotID] AS [TestRobotID], 
     [TestRobot].[TestRobotName] AS [TestRobotName], 
+    [TestRobot].[TestRobotImagePath] AS [TestRobotImagePath], 
+    [TestRobot].[TestRobotDesc] AS [TestRobotDesc], 
     [TestRobot].[CreatedDate] AS [CreatedDate], 
     [TestRobot].[CreatedBy] AS [CreatedBy]
     FROM [dbo].[TestRobot] AS [TestRobot]</DefiningQuery>
@@ -800,6 +852,17 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
     [TestRobotAction].[CreatedDate] AS [CreatedDate], 
     [TestRobotAction].[CreatedBy] AS [CreatedBy]
     FROM [dbo].[TestRobotAction] AS [TestRobotAction]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestRobotConfigurations" EntityType="Self.TestRobotConfigurations" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestRobotConfigurations].[TestRobotConfigurationID] AS [TestRobotConfigurationID], 
+    [TestRobotConfigurations].[TestRobotID] AS [TestRobotID], 
+    [TestRobotConfigurations].[TestMicroControllerID] AS [TestMicroControllerID], 
+    [TestRobotConfigurations].[TestRobotActionAsscociatedID] AS [TestRobotActionAsscociatedID], 
+    [TestRobotConfigurations].[RobotConfigurationDescription] AS [RobotConfigurationDescription], 
+    [TestRobotConfigurations].[CreatedDate] AS [CreatedDate], 
+    [TestRobotConfigurations].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestRobotConfigurations] AS [TestRobotConfigurations]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="TestRobotParameter" EntityType="Self.TestRobotParameter" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1366,6 +1429,20 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="TestMicroController">
+          <Key>
+            <PropertyRef Name="TestMicroControllerID" />
+            <PropertyRef Name="TestMicroControllerName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestMicroControllerID" Type="Guid" Nullable="false" />
+          <Property Name="TestMicroControllerName" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestMicroControllerRealNameWithCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TestMicroControllerHexFile" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="TestProperty">
           <Key>
             <PropertyRef Name="TestPropertyID" />
@@ -1396,11 +1473,15 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Key>
             <PropertyRef Name="TestRobotID" />
             <PropertyRef Name="TestRobotName" />
+            <PropertyRef Name="TestRobotImagePath" />
+            <PropertyRef Name="TestRobotDesc" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestRobotID" Type="Guid" Nullable="false" />
-          <Property Name="TestRobotName" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestRobotImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestRobotDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
@@ -1418,6 +1499,24 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="TestRobotConfiguration">
+          <Key>
+            <PropertyRef Name="TestRobotConfigurationID" />
+            <PropertyRef Name="TestRobotID" />
+            <PropertyRef Name="TestMicroControllerID" />
+            <PropertyRef Name="TestRobotActionAsscociatedID" />
+            <PropertyRef Name="RobotConfigurationDescription" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotConfigurationID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotID" Type="Guid" Nullable="false" />
+          <Property Name="TestMicroControllerID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotActionAsscociatedID" Type="Guid" Nullable="false" />
+          <Property Name="RobotConfigurationDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="TestRobotParameter">
           <Key>
             <PropertyRef Name="TestRobotParameterID" />
@@ -1426,7 +1525,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestRobotParameterID" Type="Guid" Nullable="false" />
-          <Property Name="TestRobotParamterName" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotParamterName" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TestRobotParameterValue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
@@ -1597,10 +1696,12 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="Tokens" EntityType="Self.Token" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="TestClasses1" EntityType="Self.TestClass1" />
+          <EntitySet Name="TestMicroControllers" EntityType="Self.TestMicroController" />
           <EntitySet Name="TestProperties" EntityType="Self.TestProperty" />
           <EntitySet Name="TestPropertyAllocateds" EntityType="Self.TestPropertyAllocated" />
           <EntitySet Name="TestRobots" EntityType="Self.TestRobot" />
           <EntitySet Name="TestRobotActions" EntityType="Self.TestRobotAction" />
+          <EntitySet Name="TestRobotConfigurations" EntityType="Self.TestRobotConfiguration" />
           <EntitySet Name="TestRobotParameters" EntityType="Self.TestRobotParameter" />
           <EntitySet Name="TestRobotTypes" EntityType="Self.TestRobotType" />
           <EntitySet Name="TestScenarios1" EntityType="Self.TestScenario1" />
@@ -2106,6 +2207,18 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TestMicroControllers">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestMicroController">
+              <MappingFragment StoreEntitySet="TestMicroController">
+                <ScalarProperty Name="TestMicroControllerID" ColumnName="TestMicroControllerID" />
+                <ScalarProperty Name="TestMicroControllerName" ColumnName="TestMicroControllerName" />
+                <ScalarProperty Name="TestMicroControllerRealNameWithCode" ColumnName="TestMicroControllerRealNameWithCode" />
+                <ScalarProperty Name="TestMicroControllerHexFile" ColumnName="TestMicroControllerHexFile" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TestProperties">
             <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestProperty">
               <MappingFragment StoreEntitySet="TestProperty">
@@ -2132,6 +2245,8 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               <MappingFragment StoreEntitySet="TestRobot">
                 <ScalarProperty Name="TestRobotID" ColumnName="TestRobotID" />
                 <ScalarProperty Name="TestRobotName" ColumnName="TestRobotName" />
+                <ScalarProperty Name="TestRobotImagePath" ColumnName="TestRobotImagePath" />
+                <ScalarProperty Name="TestRobotDesc" ColumnName="TestRobotDesc" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
               </MappingFragment>
@@ -2143,6 +2258,19 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
                 <ScalarProperty Name="TestRobotActionID" ColumnName="TestRobotActionID" />
                 <ScalarProperty Name="TestRobotActionName" ColumnName="TestRobotActionName" />
                 <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRobotConfigurations">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestRobotConfiguration">
+              <MappingFragment StoreEntitySet="TestRobotConfigurations">
+                <ScalarProperty Name="TestRobotConfigurationID" ColumnName="TestRobotConfigurationID" />
+                <ScalarProperty Name="TestRobotID" ColumnName="TestRobotID" />
+                <ScalarProperty Name="TestMicroControllerID" ColumnName="TestMicroControllerID" />
+                <ScalarProperty Name="TestRobotActionAsscociatedID" ColumnName="TestRobotActionAsscociatedID" />
+                <ScalarProperty Name="RobotConfigurationDescription" ColumnName="RobotConfigurationDescription" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
               </MappingFragment>

@@ -15,7 +15,9 @@ namespace TestFrameworkPortal
     public partial class TestRobot
     {
         public System.Guid TestRobotID { get; set; }
-        public System.Guid TestRobotName { get; set; }
+        public string TestRobotName { get; set; }
+        public string TestRobotImagePath { get; set; }
+        public string TestRobotDesc { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.Guid CreatedBy { get; set; }
     }

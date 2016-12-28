@@ -67,10 +67,12 @@ namespace TestFrameworkPortal
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<TestClass1> TestClasses1 { get; set; }
+        public virtual DbSet<TestMicroController> TestMicroControllers { get; set; }
         public virtual DbSet<TestProperty> TestProperties { get; set; }
         public virtual DbSet<TestPropertyAllocated> TestPropertyAllocateds { get; set; }
         public virtual DbSet<TestRobot> TestRobots { get; set; }
         public virtual DbSet<TestRobotAction> TestRobotActions { get; set; }
+        public virtual DbSet<TestRobotConfiguration> TestRobotConfigurations { get; set; }
         public virtual DbSet<TestRobotParameter> TestRobotParameters { get; set; }
         public virtual DbSet<TestRobotType> TestRobotTypes { get; set; }
         public virtual DbSet<TestScenario1> TestScenarios1 { get; set; }
