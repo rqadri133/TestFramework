@@ -22,6 +22,19 @@ app.service("TestFramworkService", function ($http ,$rootScope)
     };
 
 
+    this.loadAllTestRobotTypes=function(token)
+    {
+
+        return $http(
+         {
+             method: 'post',
+             data: token,
+             url: 'testrobottypes/LoadAll'
+         });
+
+    }
+
+
 
     this.loadAllColumnsFromTbl = function (token) {
         return $http(

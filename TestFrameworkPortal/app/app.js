@@ -14,6 +14,8 @@ var app;
 
         $rootScope.users = [];
       
+        
+        $rootScope.testRobotTypes = [];
 
         $rootScope.token = null;
         $rootScope.ValidationCommonThread = [];

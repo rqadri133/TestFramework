@@ -254,6 +254,7 @@
     <Compile Include="Controllers\TestConnectionsController.cs" />
     <Compile Include="Controllers\TestConnectionTypesController.cs" />
     <Compile Include="Controllers\TestOperandsController.cs" />
+    <Compile Include="Controllers\TestRobotTypesController.cs" />
     <Compile Include="Controllers\TestScriptParametersController.cs" />
     <Compile Include="Controllers\TestScriptParameterTypesController.cs" />
     <Compile Include="Controllers\TestTypesController.cs" />
@@ -303,6 +304,9 @@
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="TestClass.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestClass1.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="TestConnection.cs">
@@ -356,10 +360,28 @@
     <Compile Include="TestOperand.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="TestProperty.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestPropertyAllocated.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="TestResultTemplate.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="TestResultTemplate1.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestRobot.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestRobotAction.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestRobotParameter.cs">
+      <DependentUpon>TMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestRobotType.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
     <Compile Include="TestScenario.cs">
@@ -1295,6 +1317,7 @@
     <Content Include="TestConnections.html" />
     <Content Include="TestCase.html" />
     <Content Include="TestExpressions.html" />
+    <Content Include="TestRobot.html" />
     <Content Include="TMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TMS.edmx</DependentUpon>

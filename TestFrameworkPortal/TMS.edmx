@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TestCaseManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -166,6 +166,21 @@
           <Property Name="TestCaseID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TestCaseDescName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="TestTypeID" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestClass">
+          <Key>
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="TestClassName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestParentClassID" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -365,6 +380,36 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestProperty' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestProperty">
+          <Key>
+            <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestPropertyName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestPropertyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestPropertyAllocated' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestPropertyAllocated">
+          <Key>
+            <PropertyRef Name="TestPropertyAllocatedID" />
+            <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestPropertyAllocatedID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="TestResultTemplate">
           <Key>
             <PropertyRef Name="TestResultTemplateID" />
@@ -384,6 +429,65 @@
           <Property Name="TestResultTemmplateURL" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TestTemplateURL" Type="nvarchar" MaxLength="200" />
           <Property Name="TestTemplateType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobot' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestRobot">
+          <Key>
+            <PropertyRef Name="TestRobotID" />
+            <PropertyRef Name="TestRobotName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotName" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotAction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestRobotAction">
+          <Key>
+            <PropertyRef Name="TestRobotActionID" />
+            <PropertyRef Name="TestRobotActionName" />
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotActionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotActionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotParameter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestRobotParameter">
+          <Key>
+            <PropertyRef Name="TestRobotParameterID" />
+            <PropertyRef Name="TestRobotParamterName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotParameterID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotParamterName" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotParameterValue" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestRobotType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestRobotType">
+          <Key>
+            <PropertyRef Name="TestRobotTypeID" />
+            <PropertyRef Name="TestRobotTypeName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestRobotTypeName" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -611,7 +715,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TMSModelStoreContainer">
+        <EntityContainer Name="TestCaseManagementSystemModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -654,6 +758,66 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="TestType" EntityType="Self.TestType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestClass" EntityType="Self.TestClass" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestClass].[TestClassID] AS [TestClassID], 
+    [TestClass].[TestClassName] AS [TestClassName], 
+    [TestClass].[TestParentClassID] AS [TestParentClassID], 
+    [TestClass].[CreatedDate] AS [CreatedDate], 
+    [TestClass].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestClass] AS [TestClass]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestProperty" EntityType="Self.TestProperty" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestProperty].[TestPropertyID] AS [TestPropertyID], 
+    [TestProperty].[TestPropertyName] AS [TestPropertyName], 
+    [TestProperty].[CreatedDate] AS [CreatedDate], 
+    [TestProperty].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestProperty] AS [TestProperty]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestPropertyAllocated" EntityType="Self.TestPropertyAllocated" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestPropertyAllocated].[TestPropertyAllocatedID] AS [TestPropertyAllocatedID], 
+    [TestPropertyAllocated].[TestPropertyID] AS [TestPropertyID], 
+    [TestPropertyAllocated].[TestClassID] AS [TestClassID], 
+    [TestPropertyAllocated].[CreatedDate] AS [CreatedDate], 
+    [TestPropertyAllocated].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestPropertyAllocated] AS [TestPropertyAllocated]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestRobot" EntityType="Self.TestRobot" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestRobot].[TestRobotID] AS [TestRobotID], 
+    [TestRobot].[TestRobotName] AS [TestRobotName], 
+    [TestRobot].[CreatedDate] AS [CreatedDate], 
+    [TestRobot].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestRobot] AS [TestRobot]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestRobotAction" EntityType="Self.TestRobotAction" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestRobotAction].[TestRobotActionID] AS [TestRobotActionID], 
+    [TestRobotAction].[TestRobotActionName] AS [TestRobotActionName], 
+    [TestRobotAction].[TestClassID] AS [TestClassID], 
+    [TestRobotAction].[CreatedDate] AS [CreatedDate], 
+    [TestRobotAction].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestRobotAction] AS [TestRobotAction]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestRobotParameter" EntityType="Self.TestRobotParameter" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestRobotParameter].[TestRobotParameterID] AS [TestRobotParameterID], 
+    [TestRobotParameter].[TestRobotParamterName] AS [TestRobotParamterName], 
+    [TestRobotParameter].[TestRobotParameterValue] AS [TestRobotParameterValue], 
+    [TestRobotParameter].[CreatedDate] AS [CreatedDate], 
+    [TestRobotParameter].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestRobotParameter] AS [TestRobotParameter]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TestRobotType" EntityType="Self.TestRobotType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestRobotType].[TestRobotTypeID] AS [TestRobotTypeID], 
+    [TestRobotType].[TestRobotTypeName] AS [TestRobotTypeName], 
+    [TestRobotType].[CreatedDate] AS [CreatedDate], 
+    [TestRobotType].[CreatedBy] AS [CreatedBy]
+    FROM [dbo].[TestRobotType] AS [TestRobotType]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="TestScenarios" EntityType="Self.TestScenarios" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TestScenarios].[TestScenarioID] AS [TestScenarioID], 
@@ -731,7 +895,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TestCaseManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1189,6 +1353,96 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CompanyWebSite" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="TestClass1">
+          <Key>
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="TestClassName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestClassID" Type="Guid" Nullable="false" />
+          <Property Name="TestClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestParentClassID" Type="Guid" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestProperty">
+          <Key>
+            <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestPropertyName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="TestPropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestPropertyAllocated">
+          <Key>
+            <PropertyRef Name="TestPropertyAllocatedID" />
+            <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestPropertyAllocatedID" Type="Guid" Nullable="false" />
+          <Property Name="TestPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="TestClassID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestRobot">
+          <Key>
+            <PropertyRef Name="TestRobotID" />
+            <PropertyRef Name="TestRobotName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotName" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestRobotAction">
+          <Key>
+            <PropertyRef Name="TestRobotActionID" />
+            <PropertyRef Name="TestRobotActionName" />
+            <PropertyRef Name="TestClassID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotActionID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestClassID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestRobotParameter">
+          <Key>
+            <PropertyRef Name="TestRobotParameterID" />
+            <PropertyRef Name="TestRobotParamterName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotParameterID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotParamterName" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotParameterValue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestRobotType">
+          <Key>
+            <PropertyRef Name="TestRobotTypeID" />
+            <PropertyRef Name="TestRobotTypeName" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedBy" />
+          </Key>
+          <Property Name="TestRobotTypeID" Type="Guid" Nullable="false" />
+          <Property Name="TestRobotTypeName" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="TestScenario1">
           <Key>
             <PropertyRef Name="TestScenarioID" />
@@ -1342,6 +1596,13 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="TestTypes" EntityType="Self.TestType" />
           <EntitySet Name="Tokens" EntityType="Self.Token" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="TestClasses1" EntityType="Self.TestClass1" />
+          <EntitySet Name="TestProperties" EntityType="Self.TestProperty" />
+          <EntitySet Name="TestPropertyAllocateds" EntityType="Self.TestPropertyAllocated" />
+          <EntitySet Name="TestRobots" EntityType="Self.TestRobot" />
+          <EntitySet Name="TestRobotActions" EntityType="Self.TestRobotAction" />
+          <EntitySet Name="TestRobotParameters" EntityType="Self.TestRobotParameter" />
+          <EntitySet Name="TestRobotTypes" EntityType="Self.TestRobotType" />
           <EntitySet Name="TestScenarios1" EntityType="Self.TestScenario1" />
           <EntitySet Name="TestScriptParameters1" EntityType="Self.TestScriptParameter1" />
           <EntitySet Name="TestScriptParameterTypes" EntityType="Self.TestScriptParameterType" />
@@ -1366,9 +1627,9 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TMSModelStoreContainer" CdmEntityContainer="TMS">
+        <EntityContainerMapping StorageEntityContainer="TestCaseManagementSystemModelStoreContainer" CdmEntityContainer="TMS">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="TMSModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -1378,7 +1639,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="TMSModel.AspNetRole">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1386,7 +1647,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="TMSModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1396,7 +1657,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="TMSModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -1405,7 +1666,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="TMSModel.AspNetUser">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1423,7 +1684,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ErrorLoggers">
-            <EntityTypeMapping TypeName="TMSModel.ErrorLogger">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.ErrorLogger">
               <MappingFragment StoreEntitySet="ErrorLoggers">
                 <ScalarProperty Name="ErrorLogID" ColumnName="ErrorLogID" />
                 <ScalarProperty Name="ErrorDescName" ColumnName="ErrorDescName" />
@@ -1434,7 +1695,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegressFileTests">
-            <EntityTypeMapping TypeName="TMSModel.RegressFileTest">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.RegressFileTest">
               <MappingFragment StoreEntitySet="RegressFileTest">
                 <ScalarProperty Name="RegressFileTestID" ColumnName="RegressFileTestID" />
                 <ScalarProperty Name="RegressTestFilePathSource" ColumnName="RegressTestFilePathSource" />
@@ -1445,7 +1706,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegressFileTests1">
-            <EntityTypeMapping TypeName="TMSModel.RegressFileTest1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.RegressFileTest1">
               <MappingFragment StoreEntitySet="RegressFileTests">
                 <ScalarProperty Name="RegressFileTestID" ColumnName="RegressFileTestID" />
                 <ScalarProperty Name="RegressTestFilePathSource" ColumnName="RegressTestFilePathSource" />
@@ -1456,7 +1717,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TargetFrameworks">
-            <EntityTypeMapping TypeName="TMSModel.TargetFramework">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TargetFramework">
               <MappingFragment StoreEntitySet="TargetFrameworks">
                 <ScalarProperty Name="TargetFrameworkID" ColumnName="TargetFrameworkID" />
                 <ScalarProperty Name="TargetFrameWorkName" ColumnName="TargetFrameWorkName" />
@@ -1466,7 +1727,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestAssemblies">
-            <EntityTypeMapping TypeName="TMSModel.TestAssembly">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestAssembly">
               <MappingFragment StoreEntitySet="TestAssemblies">
                 <ScalarProperty Name="TestAssemblyID" ColumnName="TestAssemblyID" />
                 <ScalarProperty Name="TestAssemblyName" ColumnName="TestAssemblyName" />
@@ -1479,7 +1740,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCases">
-            <EntityTypeMapping TypeName="TMSModel.TestCase">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCase">
               <MappingFragment StoreEntitySet="TestCase">
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
                 <ScalarProperty Name="TestCaseDescName" ColumnName="TestCaseDescName" />
@@ -1490,7 +1751,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCaseAssigneds">
-            <EntityTypeMapping TypeName="TMSModel.TestCaseAssigned">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCaseAssigned">
               <MappingFragment StoreEntitySet="TestCaseAssigned">
                 <ScalarProperty Name="TestCaseAssignedID" ColumnName="TestCaseAssignedID" />
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
@@ -1502,7 +1763,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCaseAssigneds1">
-            <EntityTypeMapping TypeName="TMSModel.TestCaseAssigned1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCaseAssigned1">
               <MappingFragment StoreEntitySet="TestCaseAssigneds">
                 <ScalarProperty Name="TestCaseAssignedID" ColumnName="TestCaseAssignedID" />
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
@@ -1514,7 +1775,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCases1">
-            <EntityTypeMapping TypeName="TMSModel.TestCas">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCas">
               <MappingFragment StoreEntitySet="TestCases">
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
                 <ScalarProperty Name="TestCaseDescName" ColumnName="TestCaseDescName" />
@@ -1525,7 +1786,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestClasses">
-            <EntityTypeMapping TypeName="TMSModel.TestClass">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestClass">
               <MappingFragment StoreEntitySet="TestClasses">
                 <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
                 <ScalarProperty Name="TestClassName" ColumnName="TestClassName" />
@@ -1538,7 +1799,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestConnections">
-            <EntityTypeMapping TypeName="TMSModel.TestConnection">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestConnection">
               <MappingFragment StoreEntitySet="TestConnections">
                 <ScalarProperty Name="TestConnectionID" ColumnName="TestConnectionID" />
                 <ScalarProperty Name="TestConnectionName" ColumnName="TestConnectionName" />
@@ -1550,7 +1811,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestConnectionTypes">
-            <EntityTypeMapping TypeName="TMSModel.TestConnectionType">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestConnectionType">
               <MappingFragment StoreEntitySet="TestConnectionTypes">
                 <ScalarProperty Name="TestConnectionTypeID" ColumnName="TestConnectionTypeID" />
                 <ScalarProperty Name="TestConnctionTypeName" ColumnName="TestConnctionTypeName" />
@@ -1560,7 +1821,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCycles">
-            <EntityTypeMapping TypeName="TMSModel.TestCycle">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCycle">
               <MappingFragment StoreEntitySet="TestCycle">
                 <ScalarProperty Name="TestCycleID" ColumnName="TestCycleID" />
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
@@ -1573,7 +1834,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestCycles1">
-            <EntityTypeMapping TypeName="TMSModel.TestCycle1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCycle1">
               <MappingFragment StoreEntitySet="TestCycles">
                 <ScalarProperty Name="TestCycleID" ColumnName="TestCycleID" />
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
@@ -1586,7 +1847,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestDataModelFunctions">
-            <EntityTypeMapping TypeName="TMSModel.TestDataModelFunction">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestDataModelFunction">
               <MappingFragment StoreEntitySet="TestDataModelFunction">
                 <ScalarProperty Name="TestDataModelFunctionID" ColumnName="TestDataModelFunctionID" />
                 <ScalarProperty Name="TestDataModelFunctionName" ColumnName="TestDataModelFunctionName" />
@@ -1598,7 +1859,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestDataModelFunctions1">
-            <EntityTypeMapping TypeName="TMSModel.TestDataModelFunction1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestDataModelFunction1">
               <MappingFragment StoreEntitySet="TestDataModelFunctions">
                 <ScalarProperty Name="TestDataModelFunctionID" ColumnName="TestDataModelFunctionID" />
                 <ScalarProperty Name="TestDataModelFunctionName" ColumnName="TestDataModelFunctionName" />
@@ -1610,7 +1871,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestDataNodeAnaylysis">
-            <EntityTypeMapping TypeName="TMSModel.TestDataNodeAnaylysi">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestDataNodeAnaylysi">
               <MappingFragment StoreEntitySet="TestDataNodeAnaylysis">
                 <ScalarProperty Name="TestDataNodeAnalysisID" ColumnName="TestDataNodeAnalysisID" />
                 <ScalarProperty Name="TestDataNodeAnalysisName" ColumnName="TestDataNodeAnalysisName" />
@@ -1623,7 +1884,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestDataNodeTriggeredEvents">
-            <EntityTypeMapping TypeName="TMSModel.TestDataNodeTriggeredEvent">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestDataNodeTriggeredEvent">
               <MappingFragment StoreEntitySet="TestDataNodeTriggeredEvents">
                 <ScalarProperty Name="TestDataNodeTriggeredEventID" ColumnName="TestDataNodeTriggeredEventID" />
                 <ScalarProperty Name="TestDataNodeTriggeredEventName" ColumnName="TestDataNodeTriggeredEventName" />
@@ -1633,7 +1894,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestEnvironments">
-            <EntityTypeMapping TypeName="TMSModel.TestEnvironment">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestEnvironment">
               <MappingFragment StoreEntitySet="TestEnvironment">
                 <ScalarProperty Name="TestEnvironmentID" ColumnName="TestEnvironmentID" />
                 <ScalarProperty Name="TestEnvironmentName" ColumnName="TestEnvironmentName" />
@@ -1644,7 +1905,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestEnvironments1">
-            <EntityTypeMapping TypeName="TMSModel.TestEnvironment1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestEnvironment1">
               <MappingFragment StoreEntitySet="TestEnvironments">
                 <ScalarProperty Name="TestEnvironmentID" ColumnName="TestEnvironmentID" />
                 <ScalarProperty Name="TestEnvironmentName" ColumnName="TestEnvironmentName" />
@@ -1655,7 +1916,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestExpressionInjections">
-            <EntityTypeMapping TypeName="TMSModel.TestExpressionInjection">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestExpressionInjection">
               <MappingFragment StoreEntitySet="TestExpressionInjection">
                 <ScalarProperty Name="TestExpressionInjectionID" ColumnName="TestExpressionInjectionID" />
                 <ScalarProperty Name="ExpressionInjection" ColumnName="ExpressionInjection" />
@@ -1665,7 +1926,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestExpressionInjections1">
-            <EntityTypeMapping TypeName="TMSModel.TestExpressionInjection1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestExpressionInjection1">
               <MappingFragment StoreEntitySet="TestExpressionInjections">
                 <ScalarProperty Name="TestExpressionInjectionID" ColumnName="TestExpressionInjectionID" />
                 <ScalarProperty Name="ExpressionInjection" ColumnName="ExpressionInjection" />
@@ -1675,7 +1936,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestNodes">
-            <EntityTypeMapping TypeName="TMSModel.TestNode">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestNode">
               <MappingFragment StoreEntitySet="TestNode">
                 <ScalarProperty Name="TestNodeID" ColumnName="TestNodeID" />
                 <ScalarProperty Name="TestNodeName" ColumnName="TestNodeName" />
@@ -1686,7 +1947,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestNodeDetails">
-            <EntityTypeMapping TypeName="TMSModel.TestNodeDetail">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestNodeDetail">
               <MappingFragment StoreEntitySet="TestNodeDetail">
                 <ScalarProperty Name="TestNodeDetailID" ColumnName="TestNodeDetailID" />
                 <ScalarProperty Name="TestNodeID" ColumnName="TestNodeID" />
@@ -1697,7 +1958,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestNodeDetails1">
-            <EntityTypeMapping TypeName="TMSModel.TestNodeDetail1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestNodeDetail1">
               <MappingFragment StoreEntitySet="TestNodeDetails">
                 <ScalarProperty Name="TestNodeDetailID" ColumnName="TestNodeDetailID" />
                 <ScalarProperty Name="TestNodeID" ColumnName="TestNodeID" />
@@ -1708,7 +1969,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestNodes1">
-            <EntityTypeMapping TypeName="TMSModel.TestNode1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestNode1">
               <MappingFragment StoreEntitySet="TestNodes">
                 <ScalarProperty Name="TestNodeID" ColumnName="TestNodeID" />
                 <ScalarProperty Name="TestNodeName" ColumnName="TestNodeName" />
@@ -1719,7 +1980,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestOperands">
-            <EntityTypeMapping TypeName="TMSModel.TestOperand">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestOperand">
               <MappingFragment StoreEntitySet="TestOperands">
                 <ScalarProperty Name="TestOperandID" ColumnName="TestOperandID" />
                 <ScalarProperty Name="TestOperandToken" ColumnName="TestOperandToken" />
@@ -1730,7 +1991,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestResultTemplates">
-            <EntityTypeMapping TypeName="TMSModel.TestResultTemplate">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestResultTemplate">
               <MappingFragment StoreEntitySet="TestResultTemplate">
                 <ScalarProperty Name="TestResultTemplateID" ColumnName="TestResultTemplateID" />
                 <ScalarProperty Name="TestResultTemmplateURL" ColumnName="TestResultTemmplateURL" />
@@ -1742,7 +2003,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestResultTemplates1">
-            <EntityTypeMapping TypeName="TMSModel.TestResultTemplate1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestResultTemplate1">
               <MappingFragment StoreEntitySet="TestResultTemplates">
                 <ScalarProperty Name="TestResultTemplateID" ColumnName="TestResultTemplateID" />
                 <ScalarProperty Name="TestResultTemmplateURL" ColumnName="TestResultTemmplateURL" />
@@ -1754,7 +2015,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScenarios">
-            <EntityTypeMapping TypeName="TMSModel.TestScenario">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScenario">
               <MappingFragment StoreEntitySet="TestScenario">
                 <ScalarProperty Name="TestScenarioID" ColumnName="TestScenarioID" />
                 <ScalarProperty Name="TestScenarioDesc" ColumnName="TestScenarioDesc" />
@@ -1765,7 +2026,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScripts">
-            <EntityTypeMapping TypeName="TMSModel.TestScript">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScript">
               <MappingFragment StoreEntitySet="TestScript">
                 <ScalarProperty Name="TestScriptID" ColumnName="TestScriptID" />
                 <ScalarProperty Name="TestScript1" ColumnName="TestScript" />
@@ -1775,7 +2036,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScriptParameters">
-            <EntityTypeMapping TypeName="TMSModel.TestScriptParameter">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScriptParameter">
               <MappingFragment StoreEntitySet="TestScriptParameter">
                 <ScalarProperty Name="TestScriptParameterID" ColumnName="TestScriptParameterID" />
                 <ScalarProperty Name="TestScriptParamterTypeID" ColumnName="TestScriptParamterTypeID" />
@@ -1788,7 +2049,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestTargetFrameworkVersions">
-            <EntityTypeMapping TypeName="TMSModel.TestTargetFrameworkVersion">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestTargetFrameworkVersion">
               <MappingFragment StoreEntitySet="TestTargetFrameworkVersions">
                 <ScalarProperty Name="VersionID" ColumnName="VersionID" />
                 <ScalarProperty Name="FrameWorkVersionName" ColumnName="FrameWorkVersionName" />
@@ -1799,7 +2060,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestTypes">
-            <EntityTypeMapping TypeName="TMSModel.TestType">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestType">
               <MappingFragment StoreEntitySet="TestType">
                 <ScalarProperty Name="TestTypeID" ColumnName="TestTypeID" />
                 <ScalarProperty Name="TestTypeName" ColumnName="TestTypeName" />
@@ -1810,7 +2071,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tokens">
-            <EntityTypeMapping TypeName="TMSModel.Token">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.Token">
               <MappingFragment StoreEntitySet="Tokens">
                 <ScalarProperty Name="TokenID" ColumnName="TokenID" />
                 <ScalarProperty Name="TokenDesc" ColumnName="TokenDesc" />
@@ -1820,7 +2081,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TMSModel.User">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
@@ -1834,8 +2095,82 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TestClasses1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestClass1">
+              <MappingFragment StoreEntitySet="TestClass">
+                <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
+                <ScalarProperty Name="TestClassName" ColumnName="TestClassName" />
+                <ScalarProperty Name="TestParentClassID" ColumnName="TestParentClassID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestProperties">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestProperty">
+              <MappingFragment StoreEntitySet="TestProperty">
+                <ScalarProperty Name="TestPropertyID" ColumnName="TestPropertyID" />
+                <ScalarProperty Name="TestPropertyName" ColumnName="TestPropertyName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestPropertyAllocateds">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestPropertyAllocated">
+              <MappingFragment StoreEntitySet="TestPropertyAllocated">
+                <ScalarProperty Name="TestPropertyAllocatedID" ColumnName="TestPropertyAllocatedID" />
+                <ScalarProperty Name="TestPropertyID" ColumnName="TestPropertyID" />
+                <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRobots">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestRobot">
+              <MappingFragment StoreEntitySet="TestRobot">
+                <ScalarProperty Name="TestRobotID" ColumnName="TestRobotID" />
+                <ScalarProperty Name="TestRobotName" ColumnName="TestRobotName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRobotActions">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestRobotAction">
+              <MappingFragment StoreEntitySet="TestRobotAction">
+                <ScalarProperty Name="TestRobotActionID" ColumnName="TestRobotActionID" />
+                <ScalarProperty Name="TestRobotActionName" ColumnName="TestRobotActionName" />
+                <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRobotParameters">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestRobotParameter">
+              <MappingFragment StoreEntitySet="TestRobotParameter">
+                <ScalarProperty Name="TestRobotParameterID" ColumnName="TestRobotParameterID" />
+                <ScalarProperty Name="TestRobotParamterName" ColumnName="TestRobotParamterName" />
+                <ScalarProperty Name="TestRobotParameterValue" ColumnName="TestRobotParameterValue" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRobotTypes">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestRobotType">
+              <MappingFragment StoreEntitySet="TestRobotType">
+                <ScalarProperty Name="TestRobotTypeID" ColumnName="TestRobotTypeID" />
+                <ScalarProperty Name="TestRobotTypeName" ColumnName="TestRobotTypeName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TestScenarios1">
-            <EntityTypeMapping TypeName="TMSModel.TestScenario1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScenario1">
               <MappingFragment StoreEntitySet="TestScenarios">
                 <ScalarProperty Name="TestScenarioID" ColumnName="TestScenarioID" />
                 <ScalarProperty Name="TestScenarioDesc" ColumnName="TestScenarioDesc" />
@@ -1846,7 +2181,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScriptParameters1">
-            <EntityTypeMapping TypeName="TMSModel.TestScriptParameter1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScriptParameter1">
               <MappingFragment StoreEntitySet="TestScriptParameters">
                 <ScalarProperty Name="TestScriptParameterID" ColumnName="TestScriptParameterID" />
                 <ScalarProperty Name="TestScriptParamterTypeID" ColumnName="TestScriptParamterTypeID" />
@@ -1859,7 +2194,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScriptParameterTypes">
-            <EntityTypeMapping TypeName="TMSModel.TestScriptParameterType">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScriptParameterType">
               <MappingFragment StoreEntitySet="TestScriptParameterType">
                 <ScalarProperty Name="TestScriptParamterTypeID" ColumnName="TestScriptParamterTypeID" />
                 <ScalarProperty Name="TestScriptParameterTypeName" ColumnName="TestScriptParameterTypeName" />
@@ -1872,7 +2207,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScriptParameterTypes1">
-            <EntityTypeMapping TypeName="TMSModel.TestScriptParameterType1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScriptParameterType1">
               <MappingFragment StoreEntitySet="TestScriptParameterTypes">
                 <ScalarProperty Name="TestScriptParamterTypeID" ColumnName="TestScriptParamterTypeID" />
                 <ScalarProperty Name="TestScriptParameterTypeName" ColumnName="TestScriptParameterTypeName" />
@@ -1882,7 +2217,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestScripts1">
-            <EntityTypeMapping TypeName="TMSModel.TestScript1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestScript1">
               <MappingFragment StoreEntitySet="TestScripts">
                 <ScalarProperty Name="TestScriptID" ColumnName="TestScriptID" />
                 <ScalarProperty Name="TestScript11" ColumnName="TestScript1" />
@@ -1892,7 +2227,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestTypes1">
-            <EntityTypeMapping TypeName="TMSModel.TestType1">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestType1">
               <MappingFragment StoreEntitySet="TestTypes">
                 <ScalarProperty Name="TestTypeID" ColumnName="TestTypeID" />
                 <ScalarProperty Name="TestTypeName" ColumnName="TestTypeName" />
@@ -1902,7 +2237,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TMSModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TestCaseManagementSystemModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>

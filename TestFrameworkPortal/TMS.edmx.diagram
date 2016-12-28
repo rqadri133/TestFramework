@@ -4,57 +4,64 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="84a8ccb965ea4e3eb35de9011c5dce00" Name="Diagram1">
-        <EntityTypeShape EntityType="TMSModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.ErrorLogger" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.RegressFileTest" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.RegressFileTest1" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TargetFramework" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestAssembly" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCase" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCaseAssigned" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCaseAssigned1" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCas" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestClass" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestConnection" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestConnectionType" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCycle" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestCycle1" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestDataModelFunction" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestDataModelFunction1" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestDataNodeAnaylysi" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestDataNodeTriggeredEvent" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestEnvironment" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestEnvironment1" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestExpressionInjection" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestExpressionInjection1" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestNode" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestNodeDetail" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestNodeDetail1" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestNode1" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestOperand" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestResultTemplate" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestResultTemplate1" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScenario" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScript" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameter" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestTargetFrameworkVersion" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestType" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.Token" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.User" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScenario1" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameter1" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameterType" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScriptParameterType1" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestScript1" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMSModel.TestType1" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
-        <AssociationConnector Association="TMSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="TMSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="TMSModel.AspNetUserRoles" ManuallyRouted="false" />
+      <Diagram DiagramId="2895b44f9d374b4eb118aa3b485d12a0" Name="Diagram1">
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.ErrorLogger" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.RegressFileTest" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.RegressFileTest1" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TargetFramework" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestAssembly" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCase" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCaseAssigned" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCaseAssigned1" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCas" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestClass" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestConnection" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestConnectionType" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCycle" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestCycle1" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestDataModelFunction" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestDataModelFunction1" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestDataNodeAnaylysi" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestDataNodeTriggeredEvent" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestEnvironment" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestEnvironment1" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestExpressionInjection" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestExpressionInjection1" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestNode" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestNodeDetail" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestNodeDetail1" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestNode1" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestOperand" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestResultTemplate" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestResultTemplate1" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScenario" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScript" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScriptParameter" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestTargetFrameworkVersion" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestType" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.Token" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.User" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestClass1" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestProperty" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestPropertyAllocated" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestRobot" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestRobotAction" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestRobotParameter" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestRobotType" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScenario1" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScriptParameter1" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScriptParameterType" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScriptParameterType1" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestScript1" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestCaseManagementSystemModel.TestType1" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="TestCaseManagementSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestCaseManagementSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestCaseManagementSystemModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

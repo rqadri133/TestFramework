@@ -224,6 +224,18 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
                     console.log('Oops! Something went wrong while saving the data.');
                 });
 
+               var testRobotTypes = TestFramworkService.loadAllTestRobotTypes(token);
+
+              testRobotTypes.then(function (d) {
+                   $rootScope.testRobotTypes = d.data;
+                   $scope.testRobotTypeID = d.data[0].TestRobotTypeID;
+
+               }, function (error) {
+                   console.log('Oops! Something went wrong while saving the data.');
+               });
+
+
+
 
             }
 
@@ -573,6 +585,8 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
     };
     
     $scope.showRemove = false;
+
+
     
 
 
@@ -720,12 +734,32 @@ app.controller('TestExpressionController', function ($scope, $http, $rootScope, 
 });
 
 
-app.controller('TestScriptController', function ($scope, $http, $rootScope, TestFramworkService) {
+app.controller('TestRobotController', function ($scope, $http, $rootScope, TestFramworkService) {
     /* test script  screen only */
      // the expression will be send from this controller to Service to generate script
+    
+    var index = 0;
+
+    $scope.selTestRobotTypeID = "";
+
+    $scope.selTestRobotName = "";
 
 
 
+    $scope.allActions = [
+       { selTestActionName: 'Define Any Action', counter: index, selTestClassForAction: 'Class Name', selTestActionSequence: '0'}];
+
+
+    $scope.addAction = function()
+    {
+        index = index + 1;
+        
+        $scope.allActions.push({
+            selTestActionName: 'Define Any Action', counter: index, selTestClassForAction: 'Class Name', selTestActionSequence: '0'
+
+        });
+
+    }
 
 
 });
