@@ -17,6 +17,35 @@ namespace TestFrameworkPortal.Controllers
         private TMS db = new TMS();
 
         // GET: api/TestMicroControllers
+
+        [Route("testmicrons/LoadAll")]
+        [HttpPost]
+        public List<TestMicroController> GetTestRobotTypes(proxyClasses.Token token)
+        {
+
+            // so dont use id you are asking him to hack all by sending ids use generated Tokens
+            Guid _authenticationToken;
+            User selectedTokenized = null;
+            var _robotypes = new List<TestMicroController>();
+
+            Token _toFind = null;
+
+            if (!String.IsNullOrEmpty(token.AuthenticationToken))
+            {
+                _toFind = db.Tokens.ToList().Find(p => p.TokenDesc == token.AuthenticationToken);
+
+                // User exist in session  
+
+                if (_toFind != null)
+                {
+                    _robotypes = db.TestMicroControllers.ToList<TestMicroController>();
+                }
+
+            }
+            return _robotypes;
+        }
+
+
         public IQueryable<TestMicroController> GetTestMicroControllers()
         {
             return db.TestMicroControllers;
