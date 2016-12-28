@@ -253,6 +253,7 @@
     <Compile Include="Controllers\TestCasesController.cs" />
     <Compile Include="Controllers\TestConnectionsController.cs" />
     <Compile Include="Controllers\TestConnectionTypesController.cs" />
+    <Compile Include="Controllers\TestMicroControllersController.cs" />
     <Compile Include="Controllers\TestOperandsController.cs" />
     <Compile Include="Controllers\TestRobotTypesController.cs" />
     <Compile Include="Controllers\TestScriptParametersController.cs" />
