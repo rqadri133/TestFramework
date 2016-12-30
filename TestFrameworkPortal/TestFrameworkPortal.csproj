@@ -245,6 +245,8 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>TMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="CodeGeneration\CSharpClassGenerator.cs" />
+    <Compile Include="CodeGeneration\ICodeGenerator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

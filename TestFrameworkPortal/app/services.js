@@ -32,7 +32,23 @@ app.service("TestFramworkService", function ($http ,$rootScope)
              url: 'testrobottypes/LoadAll'
          });
 
-    }
+    };
+
+
+
+    
+    this.loadAllTestMicrons = function (token) {
+
+        return $http(
+         {
+             method: 'post',
+             data: token,
+             url: 'testmicrons/LoadAll'
+         });
+
+    };
+
+
 
 
 

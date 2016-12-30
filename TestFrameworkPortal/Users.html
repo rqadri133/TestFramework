@@ -84,7 +84,7 @@
                                                   <tr>
                                                     <td>
                                                         <b>Select Test Parameter Data Type </b> <br />
-                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestScriptParameterTypeName as item.TestScriptParameterTypeName for item in testParameters"></select>
+                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestScriptParameterTypeID as item.TestScriptParameterTypeName for item in testParameters"></select>
                                                    </td>
 
                                                 </tr>
@@ -118,7 +118,7 @@
                                                     <td>
                                                         <b>Select Class  Name For Property Type</b> <br />
                                                         <!---this is for the Parent Class for not having any Parent inheritance just select None -->
-                                                        <select ng-model="selectParentClass"  ng-options="item.TestClassID as item.TestClassID for item in testClasses"></select>
+                                                        <select ng-model="selectParentClass"  ng-options="item.TestClassID as item.TestClassName for item in testClasses"></select>
                                                    </td>
                                                 </tr>
 
@@ -135,7 +135,7 @@
                                                            </td>
                                                    <td>
                                                        <b>Parent Class  Name</b> <br />
-                                                       <select ng-model="selectParentClassPropType"  ng-options="item.TestClassID as item.TestClassID for item in testClasses"></select>
+                                                       <select ng-model="selectParentClassPropType"  ng-options="item.TestClassID as item.TestClassName for item in testClasses"></select>
                                                    </td>
 
                                                              <!----- Recurrsion for class then below will show as Test Class Property Type as Class-->

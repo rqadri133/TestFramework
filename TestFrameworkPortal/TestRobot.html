@@ -9,7 +9,7 @@
                         </td>
                         <td>
                             <b>Select Test Robot type</b> <br />
-                            <select ng-model="selTestRobotTypeID" ng-options="item.TestRobotTypeID as item.TestRobotTypeID for item in testRobotTypes"></select>
+                            <select ng-model="selTestRobotTypeID" ng-options="item.TestRobotTypeID as item.TestRobotTypeName  for item in testRobotTypes"></select>
                         </td>
            
                     </tr>
@@ -36,7 +36,7 @@
                        </td>
                         <td>
                             <b>Define MicroController to Test</b> <br />
-                            <select ng-model="action.selTestClassForAction" ng-options="item.TestMicroControllerName as item.TestMicroControllerID for item in testMicroControllers"></select>
+                            <select ng-model="testMicron" ng-options="item.TestMicroControllerID as item.TestMicroControllerName for item in testMicroControllers"></select>
                         </td>
 
 
@@ -50,7 +50,7 @@
             <div>
                 <button id="btnSaveActionRobot" class="btn btn-primary"> Save   </button>
                 <button id="btnCancelActionsRobot" class="btn btn-danger"> Cancel  </button>
-                 &nbsp; <button id="btnSaveActions"  ng-click="addAction()" class="btn btn-dcyan"> Add Another Action </button>
+                 &nbsp; <button id="btnSaveActions"  ng-click="addAction()" class="btn btn-dcyan"> Add Robot Action </button>
 
             </div>
 

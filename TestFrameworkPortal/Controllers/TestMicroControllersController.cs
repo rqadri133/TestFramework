@@ -20,7 +20,7 @@ namespace TestFrameworkPortal.Controllers
 
         [Route("testmicrons/LoadAll")]
         [HttpPost]
-        public List<TestMicroController> GetTestRobotTypes(proxyClasses.Token token)
+        public List<TestMicroController> GetTesMicrons(proxyClasses.Token token)
         {
 
             // so dont use id you are asking him to hack all by sending ids use generated Tokens

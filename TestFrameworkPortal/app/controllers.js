@@ -234,6 +234,18 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
                    console.log('Oops! Something went wrong while saving the data.');
                });
 
+              var testMicronsTypes = TestFramworkService.loadAllTestMicrons(token);
+
+              $scope.testMicron = "";
+              testMicronsTypes.then(function (d) {
+                  $rootScope.testMicronTypes = d.data;
+                  $scope.testMicron = d.data[0].TestMicroControllerID;
+
+              }, function (error) {
+                  console.log('Oops! Something went wrong while saving the data.');
+              });
+
+
 
 
 

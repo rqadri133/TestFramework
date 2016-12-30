@@ -37,6 +37,9 @@ var app;
 
         $rootScope.testTableSources = [];
 
+        $rootScope.testMicronTypes = [];
+
+
         $rootScope.testColumnsSources = [];
         $rootScope.testOperands = [];
         
