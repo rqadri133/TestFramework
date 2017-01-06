@@ -16,9 +16,9 @@ namespace TestFrameworkPortal
     {
         public System.Guid TestClassID { get; set; }
         public string TestClassName { get; set; }
-        public System.Guid TestAssemblyID { get; set; }
-        public string TestClassDescription { get; set; }
-        public System.DateTime ClassCreationDate { get; set; }
+        public string TestClassTypeCode { get; set; }
+        public string TestClassNameSpace { get; set; }
+        public Nullable<System.Guid> TestParentClassID { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.Guid CreatedBy { get; set; }
     }

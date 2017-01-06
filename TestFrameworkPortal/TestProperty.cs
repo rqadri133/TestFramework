@@ -15,7 +15,10 @@ namespace TestFrameworkPortal
     public partial class TestProperty
     {
         public System.Guid TestPropertyID { get; set; }
+        public System.Guid TestScriptParameterTypeID { get; set; }
         public string TestPropertyName { get; set; }
+        public string TestPropertyValueToCheck { get; set; }
+        public string TestPropertyValueFound { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.Guid CreatedBy { get; set; }
     }

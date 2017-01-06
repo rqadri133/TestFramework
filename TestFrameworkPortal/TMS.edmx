@@ -109,24 +109,6 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="TestAssemblies">
-          <Key>
-            <PropertyRef Name="TestAssemblyID" />
-            <PropertyRef Name="TestAssemblyName" />
-            <PropertyRef Name="TestAssemblyExtJarFileOrDll" />
-            <PropertyRef Name="TestAssemblyFullName" />
-            <PropertyRef Name="AssemblyCreationDate" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-          </Key>
-          <Property Name="TestAssemblyID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TestAssemblyName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TestAssemblyExtJarFileOrDll" Type="nvarchar" MaxLength="17" Nullable="false" />
-          <Property Name="TestAssemblyFullName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="AssemblyCreationDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <EntityType Name="TestCase">
           <Key>
             <PropertyRef Name="TestCaseID" />
@@ -175,30 +157,16 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestClass' does not h
           <Key>
             <PropertyRef Name="TestClassID" />
             <PropertyRef Name="TestClassName" />
+            <PropertyRef Name="TestClassTypeCode" />
+            <PropertyRef Name="TestClassNameSpace" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestClassID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TestClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestClassTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TestClassNameSpace" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TestParentClassID" Type="uniqueidentifier" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TestClasses">
-          <Key>
-            <PropertyRef Name="TestClassID" />
-            <PropertyRef Name="TestClassName" />
-            <PropertyRef Name="TestAssemblyID" />
-            <PropertyRef Name="TestClassDescription" />
-            <PropertyRef Name="ClassCreationDate" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-          </Key>
-          <Property Name="TestClassID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TestClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TestAssemblyID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TestClassDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ClassCreationDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -401,12 +369,18 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestProperty' does no
         <EntityType Name="TestProperty">
           <Key>
             <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestScriptParameterTypeID" />
             <PropertyRef Name="TestPropertyName" />
+            <PropertyRef Name="TestPropertyValueToCheck" />
+            <PropertyRef Name="TestPropertyValueFound" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestScriptParameterTypeID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TestPropertyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestPropertyValueToCheck" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="TestPropertyValueFound" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -766,12 +740,10 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="RegressFileTest" EntityType="Self.RegressFileTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegressFileTests" EntityType="Self.RegressFileTests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TargetFrameworks" EntityType="Self.TargetFrameworks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TestAssemblies" EntityType="Self.TestAssemblies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestCase" EntityType="Self.TestCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestCaseAssigned" EntityType="Self.TestCaseAssigned" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestCaseAssigneds" EntityType="Self.TestCaseAssigneds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestCases" EntityType="Self.TestCases" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TestClasses" EntityType="Self.TestClasses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestConnections" EntityType="Self.TestConnections" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestConnectionTypes" EntityType="Self.TestConnectionTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestCycle" EntityType="Self.TestCycle" Schema="dbo" store:Type="Tables" />
@@ -802,6 +774,8 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             <DefiningQuery>SELECT 
     [TestClass].[TestClassID] AS [TestClassID], 
     [TestClass].[TestClassName] AS [TestClassName], 
+    [TestClass].[TestClassTypeCode] AS [TestClassTypeCode], 
+    [TestClass].[TestClassNameSpace] AS [TestClassNameSpace], 
     [TestClass].[TestParentClassID] AS [TestParentClassID], 
     [TestClass].[CreatedDate] AS [CreatedDate], 
     [TestClass].[CreatedBy] AS [CreatedBy]
@@ -820,7 +794,10 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="TestProperty" EntityType="Self.TestProperty" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TestProperty].[TestPropertyID] AS [TestPropertyID], 
+    [TestProperty].[TestScriptParameterTypeID] AS [TestScriptParameterTypeID], 
     [TestProperty].[TestPropertyName] AS [TestPropertyName], 
+    [TestProperty].[TestPropertyValueToCheck] AS [TestPropertyValueToCheck], 
+    [TestProperty].[TestPropertyValueFound] AS [TestPropertyValueFound], 
     [TestProperty].[CreatedDate] AS [CreatedDate], 
     [TestProperty].[CreatedBy] AS [CreatedBy]
     FROM [dbo].[TestProperty] AS [TestProperty]</DefiningQuery>
@@ -1061,24 +1038,6 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
-        <EntityType Name="TestAssembly">
-          <Key>
-            <PropertyRef Name="TestAssemblyID" />
-            <PropertyRef Name="TestAssemblyName" />
-            <PropertyRef Name="TestAssemblyExtJarFileOrDll" />
-            <PropertyRef Name="TestAssemblyFullName" />
-            <PropertyRef Name="AssemblyCreationDate" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-          </Key>
-          <Property Name="TestAssemblyID" Type="Guid" Nullable="false" />
-          <Property Name="TestAssemblyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TestAssemblyExtJarFileOrDll" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TestAssemblyFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AssemblyCreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-        </EntityType>
         <EntityType Name="TestCase">
           <Key>
             <PropertyRef Name="TestCaseID" />
@@ -1118,24 +1077,6 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="TestCaseID" Type="Guid" Nullable="false" />
           <Property Name="TestCaseDescName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TestTypeID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TestClass">
-          <Key>
-            <PropertyRef Name="TestClassID" />
-            <PropertyRef Name="TestClassName" />
-            <PropertyRef Name="TestAssemblyID" />
-            <PropertyRef Name="TestClassDescription" />
-            <PropertyRef Name="ClassCreationDate" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-          </Key>
-          <Property Name="TestClassID" Type="Guid" Nullable="false" />
-          <Property Name="TestClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TestAssemblyID" Type="Guid" Nullable="false" />
-          <Property Name="TestClassDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClassCreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
@@ -1416,15 +1357,19 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CompanyWebSite" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="TestClass1">
+        <EntityType Name="TestClass">
           <Key>
             <PropertyRef Name="TestClassID" />
             <PropertyRef Name="TestClassName" />
+            <PropertyRef Name="TestClassTypeCode" />
+            <PropertyRef Name="TestClassNameSpace" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestClassID" Type="Guid" Nullable="false" />
           <Property Name="TestClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestClassTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestClassNameSpace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TestParentClassID" Type="Guid" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
@@ -1446,12 +1391,18 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
         <EntityType Name="TestProperty">
           <Key>
             <PropertyRef Name="TestPropertyID" />
+            <PropertyRef Name="TestScriptParameterTypeID" />
             <PropertyRef Name="TestPropertyName" />
+            <PropertyRef Name="TestPropertyValueToCheck" />
+            <PropertyRef Name="TestPropertyValueFound" />
             <PropertyRef Name="CreatedDate" />
             <PropertyRef Name="CreatedBy" />
           </Key>
           <Property Name="TestPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="TestScriptParameterTypeID" Type="Guid" Nullable="false" />
           <Property Name="TestPropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestPropertyValueToCheck" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestPropertyValueFound" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
         </EntityType>
@@ -1663,12 +1614,10 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="RegressFileTests" EntityType="Self.RegressFileTest" />
           <EntitySet Name="RegressFileTests1" EntityType="Self.RegressFileTest1" />
           <EntitySet Name="TargetFrameworks" EntityType="Self.TargetFramework" />
-          <EntitySet Name="TestAssemblies" EntityType="Self.TestAssembly" />
           <EntitySet Name="TestCases" EntityType="Self.TestCase" />
           <EntitySet Name="TestCaseAssigneds" EntityType="Self.TestCaseAssigned" />
           <EntitySet Name="TestCaseAssigneds1" EntityType="Self.TestCaseAssigned1" />
           <EntitySet Name="TestCases1" EntityType="Self.TestCas" />
-          <EntitySet Name="TestClasses" EntityType="Self.TestClass" />
           <EntitySet Name="TestConnections" EntityType="Self.TestConnection" />
           <EntitySet Name="TestConnectionTypes" EntityType="Self.TestConnectionType" />
           <EntitySet Name="TestCycles" EntityType="Self.TestCycle" />
@@ -1695,7 +1644,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <EntitySet Name="TestTypes" EntityType="Self.TestType" />
           <EntitySet Name="Tokens" EntityType="Self.Token" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="TestClasses1" EntityType="Self.TestClass1" />
+          <EntitySet Name="TestClasses" EntityType="Self.TestClass" />
           <EntitySet Name="TestMicroControllers" EntityType="Self.TestMicroController" />
           <EntitySet Name="TestProperties" EntityType="Self.TestProperty" />
           <EntitySet Name="TestPropertyAllocateds" EntityType="Self.TestPropertyAllocated" />
@@ -1827,19 +1776,6 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TestAssemblies">
-            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestAssembly">
-              <MappingFragment StoreEntitySet="TestAssemblies">
-                <ScalarProperty Name="TestAssemblyID" ColumnName="TestAssemblyID" />
-                <ScalarProperty Name="TestAssemblyName" ColumnName="TestAssemblyName" />
-                <ScalarProperty Name="TestAssemblyExtJarFileOrDll" ColumnName="TestAssemblyExtJarFileOrDll" />
-                <ScalarProperty Name="TestAssemblyFullName" ColumnName="TestAssemblyFullName" />
-                <ScalarProperty Name="AssemblyCreationDate" ColumnName="AssemblyCreationDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TestCases">
             <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestCase">
               <MappingFragment StoreEntitySet="TestCase">
@@ -1881,19 +1817,6 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
                 <ScalarProperty Name="TestCaseID" ColumnName="TestCaseID" />
                 <ScalarProperty Name="TestCaseDescName" ColumnName="TestCaseDescName" />
                 <ScalarProperty Name="TestTypeID" ColumnName="TestTypeID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestClasses">
-            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestClass">
-              <MappingFragment StoreEntitySet="TestClasses">
-                <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
-                <ScalarProperty Name="TestClassName" ColumnName="TestClassName" />
-                <ScalarProperty Name="TestAssemblyID" ColumnName="TestAssemblyID" />
-                <ScalarProperty Name="TestClassDescription" ColumnName="TestClassDescription" />
-                <ScalarProperty Name="ClassCreationDate" ColumnName="ClassCreationDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
               </MappingFragment>
@@ -2196,11 +2119,13 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TestClasses1">
-            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestClass1">
+          <EntitySetMapping Name="TestClasses">
+            <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestClass">
               <MappingFragment StoreEntitySet="TestClass">
                 <ScalarProperty Name="TestClassID" ColumnName="TestClassID" />
                 <ScalarProperty Name="TestClassName" ColumnName="TestClassName" />
+                <ScalarProperty Name="TestClassTypeCode" ColumnName="TestClassTypeCode" />
+                <ScalarProperty Name="TestClassNameSpace" ColumnName="TestClassNameSpace" />
                 <ScalarProperty Name="TestParentClassID" ColumnName="TestParentClassID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -2223,7 +2148,10 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
             <EntityTypeMapping TypeName="TestCaseManagementSystemModel.TestProperty">
               <MappingFragment StoreEntitySet="TestProperty">
                 <ScalarProperty Name="TestPropertyID" ColumnName="TestPropertyID" />
+                <ScalarProperty Name="TestScriptParameterTypeID" ColumnName="TestScriptParameterTypeID" />
                 <ScalarProperty Name="TestPropertyName" ColumnName="TestPropertyName" />
+                <ScalarProperty Name="TestPropertyValueToCheck" ColumnName="TestPropertyValueToCheck" />
+                <ScalarProperty Name="TestPropertyValueFound" ColumnName="TestPropertyValueFound" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
               </MappingFragment>

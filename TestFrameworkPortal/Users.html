@@ -84,7 +84,7 @@
                                                   <tr>
                                                     <td>
                                                         <b>Select Test Parameter Data Type </b> <br />
-                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestScriptParameterTypeID as item.TestScriptParameterTypeName for item in testParameters"></select>
+                                                         <select ng-model="selectedParamType"  ng-change="updateParamType(selectedParamType)" ng-options="item.TestScriptParameterTypeName as item.TestScriptParameterTypeName for item in testParameters"></select>
                                                    </td>
 
                                                 </tr>
@@ -116,7 +116,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <b>Select Class  Name For Property Type</b> <br />
+                                                        <b>Select Parent Class</b> <br />
                                                         <!---this is for the Parent Class for not having any Parent inheritance just select None -->
                                                         <select ng-model="selectParentClass"  ng-options="item.TestClassID as item.TestClassName for item in testClasses"></select>
                                                    </td>

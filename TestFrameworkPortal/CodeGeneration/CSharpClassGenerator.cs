@@ -13,7 +13,7 @@ namespace TestFrameworkPortal.CodeGeneration
 {
     public class CSharpClassGenerator : ICodeGenerator
     {
-
+        private TMS db = new TMS();
         // More Configuration and Work To Continue 
         // This generated class will be 
 
@@ -25,12 +25,11 @@ namespace TestFrameworkPortal.CodeGeneration
         public bool GenerateCode(CodeConfiguration configuarions)
         {
             bool _isGenerated = false;
-
             try
             {
 
                 targetUnit = new CodeCompileUnit();
-                frameworkClasses = new CodeNamespace("NamespacewillcomefromClassaswellwillreplace");
+                frameworkClasses = new CodeNamespace(configuarions.ClassToGenerateCode.TestClassNameSpace);
                 frameworkClasses.Imports.Add(new CodeNamespaceImport(System));
 
                 targetClass = new CodeTypeDeclaration(configuarions.ClassToGenerateCode.TestClassName);
@@ -38,6 +37,9 @@ namespace TestFrameworkPortal.CodeGeneration
                 targetClass.TypeAttributes = TypeAttributes.Public;
                 frameworkClasses.Types.Add(targetClass);
                 targetUnit.Namespaces.Add(frameworkClasses);
+                AddProperties(ref targetClass, configuarions.AllocatedProperties);
+
+
 
             }
             catch (Exception excp)
@@ -56,12 +58,40 @@ namespace TestFrameworkPortal.CodeGeneration
 
         }
 
+        #region "Get Property Name Type"
+        private string GetPropertyNameType(Guid testPropertyId)
+        {
+            string _propertyName = String.Empty;
+            TestProperty property = null;
+            TestScriptParameterType parameterType = null;
+            try
+            {
+                  property =db.TestProperties.ToList().Find(p => p.TestPropertyID == testPropertyId);
+                  parameterType   =db.TestScriptParameterTypes.ToList().Find(p=>p.TestScriptParamterTypeID == property.TestScriptParameterTypeID);
+                 _propertyName = parameterType.TestScriptParameterTypeName;
+
+            }
+            catch(Exception excp)
+            {
+
+
+            }
+            finally
+            {
+
+
+            }
+
+            return _propertyName;
+
+        }
+        #endregion
 
 
 
 
 
-        private void AddProperties(CodeCompileUnit targetUnit, List<TestPropertyAllocated> allocatedProperties)
+        private void AddProperties(ref CodeTypeDeclaration targetClass, List<TestPropertyAllocated> allocatedProperties)
         {
             // Declare the read-only Width property.
             CodeMemberProperty widthProperty = null;

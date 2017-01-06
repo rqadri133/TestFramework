@@ -34,12 +34,10 @@ namespace TestFrameworkPortal
         public virtual DbSet<RegressFileTest> RegressFileTests { get; set; }
         public virtual DbSet<RegressFileTest1> RegressFileTests1 { get; set; }
         public virtual DbSet<TargetFramework> TargetFrameworks { get; set; }
-        public virtual DbSet<TestAssembly> TestAssemblies { get; set; }
         public virtual DbSet<TestCase> TestCases { get; set; }
         public virtual DbSet<TestCaseAssigned> TestCaseAssigneds { get; set; }
         public virtual DbSet<TestCaseAssigned1> TestCaseAssigneds1 { get; set; }
         public virtual DbSet<TestCas> TestCases1 { get; set; }
-        public virtual DbSet<TestClass> TestClasses { get; set; }
         public virtual DbSet<TestConnection> TestConnections { get; set; }
         public virtual DbSet<TestConnectionType> TestConnectionTypes { get; set; }
         public virtual DbSet<TestCycle> TestCycles { get; set; }
@@ -66,7 +64,7 @@ namespace TestFrameworkPortal
         public virtual DbSet<TestType> TestTypes { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<TestClass1> TestClasses1 { get; set; }
+        public virtual DbSet<TestClass> TestClasses { get; set; }
         public virtual DbSet<TestMicroController> TestMicroControllers { get; set; }
         public virtual DbSet<TestProperty> TestProperties { get; set; }
         public virtual DbSet<TestPropertyAllocated> TestPropertyAllocateds { get; set; }

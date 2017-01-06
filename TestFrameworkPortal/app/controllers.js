@@ -51,6 +51,7 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
     ];
 
     $scope.testClassName = "";
+    $scope.testClasses = [];
 
     $scope.addProperty  = function(className)  
     {
@@ -212,12 +213,12 @@ app.controller('LoginController', function ($scope, $http, $rootScope, TestFramw
 
 
             if ($rootScope.UserID != "") {
-                      
+                     
 
                var testConnections = TestFramworkService.loadAllConnections(token);
 
                testConnections.then(function (d) {
-                    $rootScope.testConnectionsAll = d.data;
+                      $rootScope.testConnectionsAll = d.data;
                       $scope.expressionObj.TestConnectionSourceID = d.data[0].TestConnectionID;
 
                 }, function (error) {
@@ -753,10 +754,11 @@ app.controller('TestRobotController', function ($scope, $http, $rootScope, TestF
     var index = 0;
 
     $scope.selTestRobotTypeID = "";
+    //https://taco.visualstudio.com/en-us/docs/get-started-first-mobile-app/
 
     $scope.selTestRobotName = "";
 
-
+    $scope.showActions = false;
 
     $scope.allActions = [
        { selTestActionName: 'Define Any Action', counter: index, selTestClassForAction: 'Class Name', selTestActionSequence: '0'}];
@@ -765,6 +767,7 @@ app.controller('TestRobotController', function ($scope, $http, $rootScope, TestF
     $scope.addAction = function()
     {
         index = index + 1;
+        $scope.showActions = true;
         
         $scope.allActions.push({
             selTestActionName: 'Define Any Action', counter: index, selTestClassForAction: 'Class Name', selTestActionSequence: '0'
