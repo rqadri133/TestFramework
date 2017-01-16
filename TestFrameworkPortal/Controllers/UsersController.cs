@@ -29,59 +29,71 @@ namespace TestFrameworkPortal.Controllers
         [HttpPost]
         public IHttpActionResult Login(UserInfo userInfo)
         {
-
             bool _IsMatchedFound = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
             User user = db.Users.ToList<User>().Find(p => p.LoginName == userInfo.UserName);
-
             IQueryable<User> allUsers = null;
-
             UserInfo usr = new UserInfo();
-            if (userInfo != null)
+
+            try
             {
 
-                _IsMatchedFound = Security.SecurityLogin.ValidatePassword(userInfo.Pwd, user.PasswordHash);
-                Token alreadyExist = null;
-                Token tokenBase = null;
-
-                if (_IsMatchedFound)
+                if (userInfo != null)
                 {
 
-                    allUsers = db.Users.AsQueryable<User>().Where (p=>p.FirstName !=null || p.FirstName !="");
-                    if (alreadyExist == null)
+                    _IsMatchedFound = Security.SecurityLogin.ValidatePassword(userInfo.Pwd, user.PasswordHash);
+                    Token alreadyExist = null;
+                    Token tokenBase = null;
+
+                    if (_IsMatchedFound)
                     {
 
-                        usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString()) + "@@^%" + Security.SecurityLogin.CreateHash("1SSSSOXZ18^$#^%$%");
-                        tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
+                        allUsers = db.Users.AsQueryable<User>().Where(p => p.FirstName != null || p.FirstName != "");
+                        if (alreadyExist == null)
+                        {
+
+                            usr.UserID = Security.SecurityLogin.CreateHash(user.UserID.ToString()) + "@@^%" + Security.SecurityLogin.CreateHash("1SSSSOXZ18^$#^%$%");
+                            tokenBase = db.Tokens.Add(new Token() { TokenID = Guid.NewGuid(), CreatedBy = user.UserID, CreatedDate = System.DateTime.Now, TokenDesc = usr.UserID });
+                        }
+                        else
+                        {
+                            alreadyExist = db.Tokens.ToList().Find(p => p.CreatedBy == user.UserID);
+                            usr.UserID = alreadyExist.TokenDesc;
+
+                        }
+
                     }
                     else
                     {
-                        alreadyExist = db.Tokens.ToList().Find(p => p.CreatedBy == user.UserID);
-                        usr.UserID = alreadyExist.TokenDesc;
+                        return NotFound();
 
                     }
 
-                }
-                else
-                {
-                    return NotFound();
 
                 }
+
+                db.SaveChanges();
+                usr.IsAdmin = false;
 
 
             }
 
+            catch(Exception excp)
+            {
 
 
-       
+
+            }
+            finally
+            {
+
+
+            }
             
-            
-            db.SaveChanges();
-            usr.IsAdmin = false;
+
              // Dont send admin screen any more its for the display prototype          
             return Ok(usr);
                 

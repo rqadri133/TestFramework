@@ -166,6 +166,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestClass' does not h
           <Property Name="TestClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TestClassTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TestClassNameSpace" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestClassMessage" Type="nvarchar" MaxLength="2000" />
           <Property Name="TestParentClassID" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
@@ -776,6 +777,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
     [TestClass].[TestClassName] AS [TestClassName], 
     [TestClass].[TestClassTypeCode] AS [TestClassTypeCode], 
     [TestClass].[TestClassNameSpace] AS [TestClassNameSpace], 
+    [TestClass].[TestClassMessage] AS [TestClassMessage], 
     [TestClass].[TestParentClassID] AS [TestParentClassID], 
     [TestClass].[CreatedDate] AS [CreatedDate], 
     [TestClass].[CreatedBy] AS [CreatedBy]
@@ -1370,6 +1372,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
           <Property Name="TestClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TestClassTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TestClassNameSpace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestClassMessage" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="TestParentClassID" Type="Guid" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
@@ -2126,6 +2129,7 @@ warning 6002: The table/view 'TestCaseManagementSystem.dbo.TestTypes' does not h
                 <ScalarProperty Name="TestClassName" ColumnName="TestClassName" />
                 <ScalarProperty Name="TestClassTypeCode" ColumnName="TestClassTypeCode" />
                 <ScalarProperty Name="TestClassNameSpace" ColumnName="TestClassNameSpace" />
+                <ScalarProperty Name="TestClassMessage" ColumnName="TestClassMessage" />
                 <ScalarProperty Name="TestParentClassID" ColumnName="TestParentClassID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

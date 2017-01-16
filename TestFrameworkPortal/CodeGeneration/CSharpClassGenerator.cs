@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 using System.CodeDom;
+using System.Reflection.Emit;
+using System.Reflection;
+
 using System.CodeDom.Compiler;
 using Microsoft.CSharp;
 
@@ -21,6 +24,34 @@ namespace TestFrameworkPortal.CodeGeneration
         CodeTypeDeclaration targetClass;
         CodeNamespace frameworkClasses = null;
         private const string System = "System";
+
+
+
+        public bool InjectDependentClassCode(TestClassDepnedency dependency)
+        {
+
+            // Continue this feature tommorrow ...
+            // if the wrapper class exist only 
+            try
+            {
+
+
+            }
+            catch(Exception excp)
+            {
+
+
+            }
+            finally
+            {
+
+
+            }
+
+            return false;
+
+        }
+
 
         public bool GenerateCode(CodeConfiguration configuarions)
         {
@@ -40,7 +71,6 @@ namespace TestFrameworkPortal.CodeGeneration
                 AddProperties(ref targetClass, configuarions.AllocatedProperties);
 
 
-
             }
             catch (Exception excp)
             {
@@ -57,6 +87,122 @@ namespace TestFrameworkPortal.CodeGeneration
             return _isGenerated;
 
         }
+
+
+
+        public string UpdateClassFunctionalityDescription(string message)
+        {
+
+
+
+            string _message = null;
+            try
+            {
+
+
+            }
+            catch(Exception excp)
+            {
+
+
+
+            }
+            finally
+            {
+
+
+
+            }
+
+            return _message;
+        }
+
+
+        // Only Return when generated 
+        public List<ClassMethod> ReturnAllMethodsOfClass(TestClassProxy objTestClass)
+        {
+            Assembly loadedAssembly   =  Assembly.Load(objTestClass.TestClassNameSpace);
+            List<Module> modules = null;
+            List<MethodInfo> methods = null;
+            Module selectedModule = null;
+            ClassMethod _classMethod = new ClassMethod();
+            List<ClassMethod> classMethods = new List<ClassMethod>();
+       
+            if(!objTestClass.Generated)
+            {
+                // Empty Cheat List if not generated 
+                return new List<ClassMethod>() ;
+
+            }
+           
+            try
+            {
+                modules = loadedAssembly.GetModules().ToList<Module>();
+
+                var selected = from modua in modules
+                                     where modua.Name == objTestClass.TestClassName
+                                     select modua;
+                selectedModule = selected.First<Module>();
+
+                if(selectedModule != null )
+                {
+                    if(selectedModule.GetMethods().Count<MethodInfo>() > 0 )
+                    {
+                        methods = selectedModule.GetMethods().ToList();
+                    }
+                }
+
+                // Wrapped the ClassMethod for methods
+                foreach(MethodInfo methodInfo in methods)
+                {
+                    _classMethod = new ClassMethod();
+                    if (methodInfo.IsPublic)
+                    {
+                        // Display public on Screen 
+                        _classMethod.AccessType = "Public";
+                    }
+                    else
+                    {
+                        _classMethod.AccessType = "Private";
+
+                    }
+                    _classMethod.MethodName = methodInfo.Name;
+                    _classMethod.ClassEncapsulatesName = methodInfo.Module.Name;
+                    _classMethod.MethodID = Guid.NewGuid();
+
+                    // this will be null once loaded on screen as never tested just generated on server 
+                    // _classMethod.MethodTestResults
+                    // _classMethod.Tested
+                    // at this point it was never tested  
+                    classMethods.Add(_classMethod);
+                 
+
+                }
+
+
+
+
+            }
+            catch(Exception excp)
+            {
+
+
+            }
+            finally
+            {
+
+
+
+            }
+
+            return classMethods;
+
+        }
+
+
+  
+
+
 
         #region "Get Property Name Type"
         private string GetPropertyNameType(Guid testPropertyId)

@@ -19,6 +19,7 @@ namespace TestFrameworkPortal.Controllers
         // GET: api/TestScriptParameterTypes
         public IQueryable<TestScriptParameterType> GetTestScriptParameterTypes()
         {
+
             return db.TestScriptParameterTypes;
         }
 

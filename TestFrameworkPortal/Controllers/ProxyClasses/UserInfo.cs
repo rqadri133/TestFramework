@@ -7,6 +7,10 @@ using System.Runtime.Serialization;
 namespace TestFrameworkPortal.Controllers
 {
 
+  
+
+
+
     [DataContract]
     public class UserInfo
     {

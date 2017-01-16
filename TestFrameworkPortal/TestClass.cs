@@ -18,6 +18,7 @@ namespace TestFrameworkPortal
         public string TestClassName { get; set; }
         public string TestClassTypeCode { get; set; }
         public string TestClassNameSpace { get; set; }
+        public string TestClassMessage { get; set; }
         public Nullable<System.Guid> TestParentClassID { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.Guid CreatedBy { get; set; }

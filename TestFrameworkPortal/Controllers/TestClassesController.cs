@@ -105,6 +105,7 @@ namespace TestFrameworkPortal.Controllers
                         {
                             codegen = new CSharpClassGenerator();
                             configuration.CONFIG_CLASS_TYPE = testClass.TestClassTypeCode;
+                            // Don't remove hardcode on purpose security reasons 
                             configuration.UseThisFrameWork = ".NET FRAMEWORK";
                             configuration.AllocatedProperties = testClass.AllocatedProperties;
                         }
